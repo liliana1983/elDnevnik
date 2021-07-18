@@ -13,13 +13,16 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.iktpreobuka.elektronskidnevnik.entities.SubjectEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.dto.SubjectDTO;
 import com.iktpreobuka.elektronskidnevnik.repositories.SubjectRepository;
+import com.iktpreobuka.elektronskidnevnik.repositories.TeacherRepository;
 
 
 @RestController
@@ -27,6 +30,8 @@ import com.iktpreobuka.elektronskidnevnik.repositories.SubjectRepository;
 public class SubjectController {
 @Autowired
 SubjectRepository subjectRepository;
+@Autowired
+TeacherRepository teacherRepository;
 	
 private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 
@@ -44,5 +49,11 @@ private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 	}
 	private String createErrorMessage(BindingResult result) {
 		return result.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.joining("\n"));
+	}
+	
+	@Secured("ROLE_ADMIN")
+	@PutMapping(path="/addTeacherForSubject")
+	public ResponseEntity<?> addTeacherForSubject(@RequestParam Integer teacherId,@RequestParam Integer subjectId){
+		if(teacherRepository.existsById(teacherId))
 	}
 }
