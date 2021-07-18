@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 public class ClassDTO {
 	@NotBlank(message = "Class name must not be blank or null ")
 	@Size(min = 3, max = 5, message = "Classname length must be between {min} and {max}")
-	@Pattern(regexp = "[^\\d{1}/?\\d{1}]")
+	@Pattern(regexp = "^\\d/\\d$")
 	private String className;
 
 	public ClassDTO() {

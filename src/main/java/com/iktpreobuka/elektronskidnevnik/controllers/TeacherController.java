@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,16 +28,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.iktpreobuka.elektronskidnevnik.entities.ClassesEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.RoleEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.TeacherEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.UserEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.dto.TeacherDTO;
 import com.iktpreobuka.elektronskidnevnik.entities.dto.UserDTO;
+import com.iktpreobuka.elektronskidnevnik.repositories.ClassesRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.RoleRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.TeacherRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.UserRepository;
 import com.iktpreobuka.elektronskidnevnik.services.TeacherService;
 import com.iktpreobuka.elektronskidnevnik.util.Encryption;
+import com.iktpreobuka.elektronskidnevnik.util.RestError;
 import com.iktpreobuka.elektronskidnevnik.util.UserCustomValidator;
 
 @RestController
@@ -50,6 +54,8 @@ public class TeacherController {
 	TeacherService teacherService;
 	@Autowired
 	RoleRepository roleRepository;
+	@Autowired
+	ClassesRepository classesRepository;
 
 	@Autowired
 	private UserCustomValidator userCustomValidator;
@@ -69,6 +75,7 @@ public class TeacherController {
 	private String createErrorMessage(BindingResult result) {
 		return result.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.joining("\n"));
 	}
+
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 
 	@Secured("ROLE_ADMIN")
@@ -94,18 +101,24 @@ public class TeacherController {
 		RoleEntity rola = roleRepository.findById(roleId).get();
 		teacher.setRole(rola);
 		teacherRepository.save(teacher);
+		logger.info(teacher.toString(), "nastavnik je dodat");
 		return new ResponseEntity<>(teacher, HttpStatus.CREATED);
 	}
-	
-	/*public ResponseEntity<?> changeOfferStatus(@Valid@PathVariable Integer id, @PathVariable EuOfferStatus status) {
-	if (offerRepository.existsById(id)) {
-		OfferEntity offer = offerRepository.findById(id).get();
-		offer.setEuOfferStatus(status);
-		if (offer.getEuOfferStatus().equals(EuOfferStatus.EXPIRED))
-			billService.cancelBIlls(id);
-		offerRepository.save(offer);
-		return new ResponseEntity<>(offer,HttpStatus.OK);
+
+	@Secured("ROLE_ADMIN")
+	@DeleteMapping(value = "/delClasAndTeacher")
+	public ResponseEntity<?> delClass(@RequestParam Integer classId, @RequestParam Integer teacherId) {
+		if (classesRepository.existsById(classId)) {
+			if (teacherRepository.existsById(teacherId)) {
+				teacherRepository.findById(teacherId).get();
+				TeacherEntity headMaster = teacherRepository.findById(teacherId).get();
+				classesRepository.findById(classId).get();
+				ClassesEntity classes = classesRepository.findById(classId).get();
+				teacherRepository.save(headMaster);
+				classesRepository.save(classes);
+				return new ResponseEntity<>(headMaster, HttpStatus.OK);
+			}
+		}
+		return new ResponseEntity<RestError>(new RestError(6, "teacher or class with that id doesnt exist"),HttpStatus.OK);
 	}
-	return null;
-}*/
 }

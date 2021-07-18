@@ -18,7 +18,7 @@ public class StudentEntity extends UserEntity {
 	private GuardianEntity guardian;
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinColumn(name="enrolledClass")
-	private ClassEntity enrolledClass;
+	private ClassesEntity enrolledClass;
 	public List<GradeEntity> getGrades() {
 		return grades;
 	}
@@ -53,11 +53,11 @@ public class StudentEntity extends UserEntity {
 		this.gradeAverage = gradeAverage;
 	}
 
-	public ClassEntity getEnrolledClass() {
+	public ClassesEntity getEnrolledClass() {
 		return enrolledClass;
 	}
 
-	public void setEnrolledClass(ClassEntity enrolledClass) {
+	public void setEnrolledClass(ClassesEntity enrolledClass) {
 		this.enrolledClass = enrolledClass;
 	}
 }

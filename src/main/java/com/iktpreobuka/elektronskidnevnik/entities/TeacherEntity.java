@@ -17,9 +17,18 @@ public class TeacherEntity extends UserEntity {
 	@ManyToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private List<SubjectEntity> subject;
 	@ManyToMany(mappedBy = "teacher", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-	private List<ClassEntity> classes;
-	@OneToOne(mappedBy = "headMaster")
-	private ClassEntity headOfClass;
+	private List<ClassesEntity> classes;
+	@OneToOne(mappedBy="headMaster",cascade = CascadeType.PERSIST)
+	private ClassesEntity headOfClass;
+	
+
+	public ClassesEntity getHeadOfClass() {
+		return headOfClass;
+	}
+
+	public void setHeadOfClass(ClassesEntity headOfClass) {
+		this.headOfClass = headOfClass;
+	}
 
 	public TeacherEntity() {
 		super();
@@ -34,11 +43,11 @@ public class TeacherEntity extends UserEntity {
 		this.subject = subject;
 	}
 
-	public List<ClassEntity> getClasses() {
+	public List<ClassesEntity> getClasses() {
 		return classes;
 	}
 
-	public void setClasses(List<ClassEntity> classes) {
+	public void setClasses(List<ClassesEntity> classes) {
 		this.classes = classes;
 	}
 }

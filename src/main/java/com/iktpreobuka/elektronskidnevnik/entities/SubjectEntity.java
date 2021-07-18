@@ -34,8 +34,8 @@ public class SubjectEntity {
 	@ManyToMany(fetch=FetchType.LAZY,cascade = CascadeType.REFRESH )
 	@JoinTable (name="subject_in_class",
 	joinColumns= {@JoinColumn(name="subject_id")},
-	inverseJoinColumns= {@JoinColumn (name="class_id")})
-	private List<ClassEntity> classes;
+	inverseJoinColumns= {@JoinColumn (name="classes_id")})
+	private List<ClassesEntity> classes;
 	@JsonIgnore
 	@OneToMany(mappedBy = "subject", fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH })
 	private List<GradeEntity> grades;
@@ -48,11 +48,11 @@ public class SubjectEntity {
 		this.teacher = teacher;
 	}
 
-	public List<ClassEntity> getClasses() {
+	public List<ClassesEntity> getClasses() {
 		return classes;
 	}
 
-	public void setClasses(List<ClassEntity> classes) {
+	public void setClasses(List<ClassesEntity> classes) {
 		this.classes = classes;
 	}
 

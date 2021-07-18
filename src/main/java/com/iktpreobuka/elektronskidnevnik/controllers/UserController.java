@@ -94,6 +94,7 @@ public class UserController {
 				.setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + this.tokenDuration))
 				.signWith(SignatureAlgorithm.HS512, this.secretKey.getBytes()).compact();
+		logger.info("token created");
 		return "Bearer " + token;
 	}
 

@@ -16,6 +16,7 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.engine.jdbc.ColumnNameCache;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -34,6 +35,7 @@ public class UserEntity {
 	@Column(name = "username")
 	private String username;
 	@Column(name = "password")
+	@JsonIgnore
 	private String password;
 
 	

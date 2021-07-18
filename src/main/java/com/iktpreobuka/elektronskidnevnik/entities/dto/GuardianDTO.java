@@ -1,9 +1,13 @@
 package com.iktpreobuka.elektronskidnevnik.entities.dto;
 
+import java.util.List;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import com.iktpreobuka.elektronskidnevnik.entities.StudentEntity;
 
 public class GuardianDTO {
 	@NotBlank(message = "Useername must not be blank or null and should be unique")
@@ -31,11 +35,14 @@ public class GuardianDTO {
 	@NotBlank(message = "Email must be provided.")
 	@Email(message="Email not valid")
 	private String email;
+	
+
 
 	public GuardianDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 
 	public GuardianDTO(
 			@NotBlank(message = "Useername must not be blank or null and should be unique") @Size(min = 5, max = 15, message = "Username length must be between {min} and {max}") String username,
