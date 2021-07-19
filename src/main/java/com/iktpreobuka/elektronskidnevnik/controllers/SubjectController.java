@@ -1,5 +1,9 @@
 package com.iktpreobuka.elektronskidnevnik.controllers;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,10 +23,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.iktpreobuka.elektronskidnevnik.entities.ClassesEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.SubjectEntity;
+import com.iktpreobuka.elektronskidnevnik.entities.TeacherEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.dto.SubjectDTO;
+import com.iktpreobuka.elektronskidnevnik.repositories.ClassesRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.SubjectRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.TeacherRepository;
+import com.iktpreobuka.elektronskidnevnik.util.RestError;
 
 
 @RestController
@@ -32,6 +40,8 @@ public class SubjectController {
 SubjectRepository subjectRepository;
 @Autowired
 TeacherRepository teacherRepository;
+@Autowired
+ClassesRepository classesRepository;
 	
 private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 
@@ -54,6 +64,36 @@ private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 	@Secured("ROLE_ADMIN")
 	@PutMapping(path="/addTeacherForSubject")
 	public ResponseEntity<?> addTeacherForSubject(@RequestParam Integer teacherId,@RequestParam Integer subjectId){
-		if(teacherRepository.existsById(teacherId))
+		if(subjectRepository.existsById(subjectId)) {
+		if(teacherRepository.existsById(teacherId)){
+				teacherRepository.findById(teacherId);
+				subjectRepository.findById(subjectId);
+				TeacherEntity teacher= teacherRepository.findById(teacherId).get();
+				SubjectEntity subject= subjectRepository.findById(subjectId).get();
+				subject.getTeacher().add(teacher);
+				teacher.getSubject().add(subject);
+				teacherRepository.save(teacher);
+				subjectRepository.save(subject);
+				return new ResponseEntity<>(subject,HttpStatus.CREATED);
+			}
+		}return new ResponseEntity<RestError>(new RestError(5,"teacher or subject not found"),HttpStatus.NOT_FOUND);
+	}
+	@Secured("ROLE_ADMIN")
+	@PutMapping(value="/addSubjectToClass")
+	public ResponseEntity<?> addSubjectToClass(@RequestParam Integer subjectId,@RequestParam Integer classId){
+		if(subjectRepository.existsById(subjectId)) {
+			if(classesRepository.existsById(classId)) {
+				subjectRepository.findById(subjectId);
+				classesRepository.findById(classId);
+				SubjectEntity subject= subjectRepository.findById(subjectId).get();
+				ClassesEntity classes=classesRepository.findById(classId).get();
+				subject.getClasses().add(classes);
+				classes.getListOfSubjects().add(subject);
+				subjectRepository.save(subject);
+				classesRepository.save(classes);
+				return new ResponseEntity<>(classes,HttpStatus.CREATED);
+			}
+		}
+		return new ResponseEntity<RestError>(new RestError(6,"class or subject not found"),HttpStatus.NOT_FOUND);
 	}
 }

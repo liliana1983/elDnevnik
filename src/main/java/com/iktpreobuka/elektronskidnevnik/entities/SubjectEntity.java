@@ -15,8 +15,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
+@JsonIgnoreProperties({ "handler", "hibernateLazyInitializer" })
 public class SubjectEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

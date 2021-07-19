@@ -19,10 +19,12 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@JsonIgnoreProperties({ "handler", "hibernateLazyInitializer" })
+@JsonIgnoreProperties(ignoreUnknown = true, 
+value ={ "handler", "hibernateLazyInitializer" })
 public class ClassesEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,12 +39,14 @@ public class ClassesEntity {
 	@ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinTable(name = "teacher_classes", joinColumns = { @JoinColumn(name = "classes_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "user_id") })
+	@JsonBackReference
 	private List<TeacherEntity> teacher;
 	@OneToMany(mappedBy = "enrolledClass", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JsonBackReference
 	private List<StudentEntity> students;
 
 @ManyToMany(mappedBy = "classes", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+@JsonIgnore
 	private List<SubjectEntity> listOfSubjects;
 
 	public List<SubjectEntity> getListOfSubjects() {

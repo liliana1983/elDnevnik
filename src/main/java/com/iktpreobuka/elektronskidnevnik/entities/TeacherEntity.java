@@ -9,14 +9,22 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.JoinColumn;
 
 @Entity
 @Table(name = "teacher")
+@JsonIgnoreProperties({ "handler", "hibernateLazyInitializer" })
+
 public class TeacherEntity extends UserEntity {
 	@ManyToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	@JsonIgnore
 	private List<SubjectEntity> subject;
 	@ManyToMany(mappedBy = "teacher", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List<ClassesEntity> classes;
 	@OneToOne(mappedBy="headMaster",cascade = CascadeType.PERSIST)
 	private ClassesEntity headOfClass;

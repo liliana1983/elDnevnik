@@ -1,44 +1,43 @@
 package com.iktpreobuka.elektronskidnevnik.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.iktpreobuka.elektronskidnevnik.entities.ClassesEntity;
-import com.iktpreobuka.elektronskidnevnik.entities.GuardianEntity;
-import com.iktpreobuka.elektronskidnevnik.entities.RoleEntity;
-import com.iktpreobuka.elektronskidnevnik.entities.StudentEntity;
-import com.iktpreobuka.elektronskidnevnik.entities.TeacherEntity;
-import com.iktpreobuka.elektronskidnevnik.entities.dto.ClassDTO;
-import com.iktpreobuka.elektronskidnevnik.entities.dto.GuardianDTO;
-import com.iktpreobuka.elektronskidnevnik.repositories.ClassesRepository;
-import com.iktpreobuka.elektronskidnevnik.repositories.RoleRepository;
-import com.iktpreobuka.elektronskidnevnik.repositories.StudentRepository;
-import com.iktpreobuka.elektronskidnevnik.repositories.TeacherRepository;
-import com.iktpreobuka.elektronskidnevnik.services.ClassesService;
-import com.iktpreobuka.elektronskidnevnik.util.Encryption;
-import com.iktpreobuka.elektronskidnevnik.util.RestError;
-
-import java.awt.PageAttributes.MediaType;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.iktpreobuka.elektronskidnevnik.entities.ClassesEntity;
+import com.iktpreobuka.elektronskidnevnik.entities.RoleEntity;
+import com.iktpreobuka.elektronskidnevnik.entities.TeacherEntity;
+import com.iktpreobuka.elektronskidnevnik.repositories.ClassesRepository;
+import com.iktpreobuka.elektronskidnevnik.repositories.RoleRepository;
+import com.iktpreobuka.elektronskidnevnik.repositories.StudentRepository;
+import com.iktpreobuka.elektronskidnevnik.repositories.TeacherRepository;
+import com.iktpreobuka.elektronskidnevnik.services.ClassesService;
+import com.iktpreobuka.elektronskidnevnik.util.ClassesValidator;
+import com.iktpreobuka.elektronskidnevnik.util.RestError;
 
 @RestController
 @RequestMapping(path = "/class")
@@ -51,7 +50,12 @@ public class ClassController {
 	TeacherRepository teacherRepository;
 	@Autowired
 	RoleRepository roleRepository;
-
+	@Autowired
+	ClassesValidator classesValidator;
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) {
+		binder.addValidators(classesValidator);
+	}
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
@@ -59,6 +63,17 @@ public class ClassController {
 
 	private String createErrorMessage(BindingResult result) {
 		return result.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.joining("\n"));
+	}
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+		Map<String, String> errors = new HashMap<>();
+		ex.getBindingResult().getAllErrors().forEach((error) -> {
+			String fieldName = ((FieldError) error).getField();
+			String errorMessage = error.getDefaultMessage();
+			errors.put(fieldName, errorMessage);
+		});
+		return errors;
 	}
 
 	@Secured("ROLE_ADMIN")
@@ -118,6 +133,25 @@ public class ClassController {
 		return new ResponseEntity<RestError>(
 				new RestError(5, "Teacher with this ID or class with this ID doesnt Exist"), HttpStatus.BAD_REQUEST);
 	}
+
+	@Secured("ROLE_ADMIN")
+	@PutMapping(value = "/addTeachersToClass")
+	public ResponseEntity<?> addTeacherToClass(@RequestParam Integer classId, @RequestParam Integer teacherId) {
+		if (classesRepository.existsById(classId)) {
+			if (teacherRepository.existsById(teacherId)) {
+				classesRepository.findById(classId).get();
+				ClassesEntity classes = classesRepository.findById(classId).get();
+				teacherRepository.findById(teacherId).get();
+				TeacherEntity teacher = teacherRepository.findById(teacherId).get();
+				teacher.getClasses().add(classes);
+				classes.getTeacher().add(teacher);
+				teacherRepository.save(teacher);
+				classesRepository.save(classes);
+ return new ResponseEntity<>(classes,HttpStatus.OK);
+			}
+		}return new ResponseEntity<RestError>(new RestError(5,"Teacher with given id or class with given id doesnt exist"),HttpStatus.BAD_REQUEST);
+	}
+
 	/*
 	 * @Secured("ROLE_ADMIN")
 	 * 
