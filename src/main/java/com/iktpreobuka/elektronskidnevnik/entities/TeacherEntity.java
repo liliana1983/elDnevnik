@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.JoinColumn;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name = "teacher")
 @JsonIgnoreProperties({ "handler", "hibernateLazyInitializer" })
@@ -24,7 +24,7 @@ public class TeacherEntity extends UserEntity {
 	@JsonIgnore
 	private List<SubjectEntity> subject;
 	@ManyToMany(mappedBy = "teacher", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-	@JsonIgnore
+	@JsonIgnore 
 	private List<ClassesEntity> classes;
 	@OneToOne(mappedBy="headMaster",cascade = CascadeType.PERSIST)
 	private ClassesEntity headOfClass;

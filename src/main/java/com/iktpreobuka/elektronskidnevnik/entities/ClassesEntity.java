@@ -39,7 +39,7 @@ public class ClassesEntity {
 	@ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinTable(name = "teacher_classes", joinColumns = { @JoinColumn(name = "classes_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "user_id") })
-	@JsonBackReference
+	
 	private List<TeacherEntity> teacher;
 	@OneToMany(mappedBy = "enrolledClass", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JsonBackReference
