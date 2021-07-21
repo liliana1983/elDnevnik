@@ -101,7 +101,7 @@ public class TeacherController {
 		RoleEntity rola = roleRepository.findById(roleId).get();
 		teacher.setRole(rola);
 		teacherRepository.save(teacher);
-		logger.info(teacher.toString(), "nastavnik je dodat");
+		logger.info(teacher.toString(), "teacher added");
 		return new ResponseEntity<>(teacher, HttpStatus.CREATED);
 	}
 
@@ -116,6 +116,7 @@ public class TeacherController {
 				ClassesEntity classes = classesRepository.findById(classId).get();
 				teacherRepository.save(headMaster);
 				classesRepository.save(classes);
+				logger.info("class and teacher deleted");
 				return new ResponseEntity<>(headMaster, HttpStatus.OK);
 			}
 		}

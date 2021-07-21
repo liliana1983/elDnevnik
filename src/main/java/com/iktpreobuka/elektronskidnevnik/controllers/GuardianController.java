@@ -62,6 +62,7 @@ public class GuardianController {
 		RoleEntity rola = roleRepository.findById(roleId).get();
 		guardian.setRole(rola);
 		guardianRepository.save(guardian);
+		logger.info("guardian created");
 		return new ResponseEntity<>(guardian, HttpStatus.CREATED);
 	}
 
@@ -74,6 +75,7 @@ public class GuardianController {
 	public ResponseEntity<?> deleteGuardian(@RequestParam Integer guardianId) {
 		GuardianEntity guardian = guardianRepository.findById(guardianId).get();
 		guardianRepository.delete(guardian);
+		logger.info("guardian deleted");
 		return new ResponseEntity<>(new RestError(2, "Guardian deleted"), HttpStatus.OK);
 	}
 

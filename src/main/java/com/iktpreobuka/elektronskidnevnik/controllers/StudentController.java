@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
@@ -47,7 +48,7 @@ private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 @Autowired
 RoleRepository roleRepository;
 @Secured("ROLE_ADMIN")
-	@PostMapping(value = "/addStudent")
+	@PostMapping(value = "/addStudent",produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<?> createStudent(@Valid @RequestBody StudentDTO newStudent, @RequestParam Integer roleId,@RequestParam Integer guardianId,
 			BindingResult result) {
 		if (result.hasErrors())
@@ -66,6 +67,7 @@ RoleRepository roleRepository;
 		student.setGuardian(guardian);
 			guardianRepository.save(guardian);
 		studentRepository.save(student);
+		logger.info("student created");
 		return new ResponseEntity<>(student, HttpStatus.CREATED);
 	}
 private String createErrorMessage(BindingResult result) {
@@ -79,6 +81,7 @@ public ResponseEntity<?> addClass(@PathVariable Integer studentId, @PathVariable
 			StudentEntity student = studentRepository.findById(studentId).get();
 			student.setEnrolledClass(classesRepository.findById(classId).get());
 			studentRepository.save(student);
+			logger.info("student add in class");
 			return new ResponseEntity<StudentEntity>(student, HttpStatus.OK);
 		}
 		return new ResponseEntity<RestError>(new RestError(1, "Class not found."), HttpStatus.NOT_FOUND);
@@ -92,6 +95,7 @@ if(studentRepository.existsById(studentId))
 	 studentRepository.findById(studentId).get();
 StudentEntity delStudent=studentRepository.findById(studentId).get();
 	studentRepository.delete(delStudent);
+	logger.info("student deleted");
 	return new ResponseEntity<>(delStudent,HttpStatus.OK);
 
 }

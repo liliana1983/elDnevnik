@@ -12,5 +12,5 @@ public interface FileHandler {
 
 
 
-	File getLogs();
+	File downloadLogs();
 }

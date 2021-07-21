@@ -55,6 +55,7 @@ public class UploadController {
 		String result = null;
 		try {
 			result = fileHandler.singleFileUpload(file, redirectAttributes);
+			logger.info("file uploaded");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -64,10 +65,7 @@ public class UploadController {
 	@Secured("ROLE_ADMIN")
 	@GetMapping("/downloadFile")
 	public ResponseEntity<InputStreamResource> downloadFile(HttpServletRequest request) throws FileNotFoundException {
-		// Load file as Resource
-		File file = fileHandler.getLogs();
-
-		// Try to determine file's content type
+		File file = fileHandler.downloadLogs();
 		String contentType = null;
 		InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
 		try {
@@ -75,12 +73,9 @@ public class UploadController {
 		} catch (IOException ex) {
 			logger.info("Could not determine file type.");
 		}
-
-		// Fallback to the default content type if type could not be determined
 		if (contentType == null) {
 			contentType = "application/octet-stream";
 		}
-
 		return ResponseEntity.ok().contentType(MediaType.parseMediaType(contentType))
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
 				.body(resource);

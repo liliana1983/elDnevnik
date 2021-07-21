@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import com.iktpreobuka.elektronskidnevnik.entities.ClassesEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.dto.ClassDTO;
 import com.iktpreobuka.elektronskidnevnik.repositories.ClassesRepository;
 @Component
@@ -20,9 +21,9 @@ ClassesRepository classesRepository;
 	@Override
 	public void validate(Object target, Errors errors) {
 ClassDTO classDto = (ClassDTO) target;
-		
 		if(classesRepository.existsByClassName(classDto.getClassName())) {
 			errors.reject("400", "Class name already exists.");
 	}
 	}
+
 }

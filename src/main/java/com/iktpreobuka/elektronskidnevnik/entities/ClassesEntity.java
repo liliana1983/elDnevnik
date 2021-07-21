@@ -21,6 +21,7 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true, 
@@ -34,7 +35,6 @@ public class ClassesEntity {
 
 	@OneToOne
 	@JoinColumn(name = "headMaster_id")
-	 @JsonBackReference
 	private TeacherEntity headMaster;
 	@ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinTable(name = "teacher_classes", joinColumns = { @JoinColumn(name = "classes_id") }, inverseJoinColumns = {
@@ -42,7 +42,7 @@ public class ClassesEntity {
 	
 	private List<TeacherEntity> teacher;
 	@OneToMany(mappedBy = "enrolledClass", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-	@JsonBackReference
+	@JsonIgnore
 	private List<StudentEntity> students;
 
 @ManyToMany(mappedBy = "classes", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
@@ -64,7 +64,7 @@ public class ClassesEntity {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
+@JsonIgnore
 	public List<TeacherEntity> getTeacher() {
 		return teacher;
 	}
@@ -77,7 +77,7 @@ public class ClassesEntity {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+@JsonIgnore
 	public List<StudentEntity> getStudents() {
 		return students;
 	}
@@ -93,7 +93,7 @@ public class ClassesEntity {
 	public void setClassName(String className) {
 		this.className = className;
 	}
-
+@JsonIgnore
 	public TeacherEntity getHeadMaster() {
 		return headMaster;
 	}

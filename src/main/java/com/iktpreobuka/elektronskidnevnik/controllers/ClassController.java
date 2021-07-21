@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.iktpreobuka.elektronskidnevnik.entities.ClassesEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.RoleEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.TeacherEntity;
+import com.iktpreobuka.elektronskidnevnik.entities.dto.ClassDTO;
 import com.iktpreobuka.elektronskidnevnik.repositories.ClassesRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.RoleRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.StudentRepository;
@@ -54,7 +55,7 @@ public class ClassController {
 	ClassesValidator classesValidator;
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
-		binder.addValidators(classesValidator);
+		binder.setValidator(classesValidator);
 	}
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 
@@ -78,7 +79,7 @@ public class ClassController {
 
 	@Secured("ROLE_ADMIN")
 	@RequestMapping(value = "/addClass", method = RequestMethod.POST)
-	public ResponseEntity<?> addClass(@Valid @RequestBody ClassesEntity newClass, @RequestParam Integer headMasterId,
+	public ResponseEntity<?> addClass(@Valid @RequestBody ClassDTO newClass, @RequestParam Integer headMasterId,
 			BindingResult result) {
 		if (result.hasErrors())
 			return new ResponseEntity<>(createErrorMessage(result), HttpStatus.BAD_REQUEST);
@@ -92,6 +93,7 @@ public class ClassController {
 	@RequestMapping(value = "/{classId}/addStudent", method = RequestMethod.PUT)
 	public ResponseEntity<?> addOneToClass(@Valid @RequestParam Integer studentId, @PathVariable Integer classId) {
 		classesService.addOneStudent(studentId, classId);
+		logger.info("student added to class");
 		return new ResponseEntity<>(HttpStatus.OK);
 
 	}
@@ -102,6 +104,7 @@ public class ClassController {
 		if (classesRepository.existsById(classId)) {
 			ClassesEntity delClass = classesRepository.findById(classId).get();
 			classesRepository.delete(delClass);
+			logger.info("class deleted");
 			return new ResponseEntity<>(delClass, HttpStatus.OK);
 
 		}
@@ -126,6 +129,7 @@ public class ClassController {
 					headMaster.setHeadOfClass(classes);
 					teacherRepository.save(headMaster);
 					classesRepository.save(classes);
+					logger.info("headMaster of the class added");
 					return new ResponseEntity<>(headMaster, HttpStatus.ACCEPTED);
 				}
 			}
@@ -147,6 +151,7 @@ public class ClassController {
 				classes.getTeacher().add(teacher);
 				teacherRepository.save(teacher);
 				classesRepository.save(classes);
+				logger.info("teacher added in class");
  return new ResponseEntity<>(classes,HttpStatus.OK);
 			}
 		}return new ResponseEntity<RestError>(new RestError(5,"Teacher with given id or class with given id doesnt exist"),HttpStatus.BAD_REQUEST);

@@ -55,6 +55,7 @@ private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 		subject.setName(newSubject.getName());
 		subject.setHoursPerWeek(newSubject.getHoursPerWeek());
 		subjectRepository.save(subject);
+		logger.info("subject created");
 		return new ResponseEntity<>(subject, HttpStatus.CREATED);
 	}
 	private String createErrorMessage(BindingResult result) {

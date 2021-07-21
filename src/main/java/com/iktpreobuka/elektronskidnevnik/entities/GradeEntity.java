@@ -1,7 +1,6 @@
 package com.iktpreobuka.elektronskidnevnik.entities;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

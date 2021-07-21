@@ -36,11 +36,10 @@ public class FileHandlerImpl implements FileHandler {
 	}
 
 	@Override
-	public File getLogs() {
-		String path = DOWNLOAD_FILE;
+	public File downloadLogs() {
 
-		File log = new File(path);
+		File file = new File(DOWNLOAD_FILE);
 
-		return log;
+		return file;
 	}
 }

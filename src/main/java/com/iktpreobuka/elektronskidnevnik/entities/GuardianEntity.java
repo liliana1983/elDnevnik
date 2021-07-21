@@ -9,30 +9,39 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-public class GuardianEntity extends UserEntity{
+@JsonIgnoreProperties({ "handler", "hibernateLazyInitializer" })
+public class GuardianEntity extends UserEntity {
 	@Column(name = "email")
 	private String email;
-	
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public List<StudentEntity> getChildren() {
 		return children;
 	}
+
 	public void setChildren(List<StudentEntity> children) {
 		this.children = children;
 	}
+
 	@OneToMany(mappedBy = "guardian", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-	@JsonBackReference
+	@JsonIgnore
 	private List<StudentEntity> children;
+
 	public GuardianEntity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 }

@@ -10,6 +10,7 @@ import com.iktpreobuka.elektronskidnevnik.entities.ClassesEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.StudentEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.TeacherEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.UserEntity;
+import com.iktpreobuka.elektronskidnevnik.entities.dto.ClassDTO;
 import com.iktpreobuka.elektronskidnevnik.repositories.ClassesRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.StudentRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.TeacherRepository;
@@ -42,7 +43,7 @@ public class ClassesServiceImpl implements ClassesService {
 	}
 
 	@Override
-	public ClassesEntity addClassWithHeadMAster(ClassesEntity newClass, Integer headMasterId) {
+	public ClassesEntity addClassWithHeadMAster(ClassDTO newClass, Integer headMasterId) {
 			if(teacherRepository.existsById(headMasterId)) {
 				TeacherEntity headMaster= teacherRepository.findById(headMasterId).get();
 				ClassesEntity oneClass=new ClassesEntity();

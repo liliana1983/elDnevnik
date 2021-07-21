@@ -23,8 +23,8 @@ public class TeacherEntity extends UserEntity {
 	@ManyToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	@JsonIgnore
 	private List<SubjectEntity> subject;
-	@ManyToMany(mappedBy = "teacher", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-	@JsonIgnore 
+	@ManyToMany(mappedBy = "teacher", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY) 
+	@JsonIgnore
 	private List<ClassesEntity> classes;
 	@OneToOne(mappedBy="headMaster",cascade = CascadeType.PERSIST)
 	private ClassesEntity headOfClass;
@@ -42,7 +42,7 @@ public class TeacherEntity extends UserEntity {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	@JsonIgnore
 	public List<SubjectEntity> getSubject() {
 		return subject;
 	}
@@ -50,7 +50,7 @@ public class TeacherEntity extends UserEntity {
 	public void setSubject(List<SubjectEntity> subject) {
 		this.subject = subject;
 	}
-
+@JsonIgnore
 	public List<ClassesEntity> getClasses() {
 		return classes;
 	}

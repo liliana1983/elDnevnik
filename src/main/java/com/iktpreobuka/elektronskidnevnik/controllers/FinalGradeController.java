@@ -9,4 +9,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/finalGrade")
 public class FinalGradeController {
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
+	
 }
