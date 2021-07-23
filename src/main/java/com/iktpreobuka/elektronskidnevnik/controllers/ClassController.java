@@ -51,8 +51,10 @@ public class ClassController {
 	TeacherRepository teacherRepository;
 	@Autowired
 	RoleRepository roleRepository;
+	
 	@Autowired
 	ClassesValidator classesValidator;
+	
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
 		binder.setValidator(classesValidator);

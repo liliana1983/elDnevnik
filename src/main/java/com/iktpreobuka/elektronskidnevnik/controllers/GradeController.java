@@ -1,23 +1,21 @@
 package com.iktpreobuka.elektronskidnevnik.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.time.LocalDate;
-
-import javax.validation.Valid;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.iktpreobuka.elektronskidnevnik.entities.ClassesEntity;
+import com.iktpreobuka.elektronskidnevnik.entities.EmailObject;
 import com.iktpreobuka.elektronskidnevnik.entities.GradeEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.StudentEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.SubjectEntity;
@@ -28,11 +26,16 @@ import com.iktpreobuka.elektronskidnevnik.repositories.GradeRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.StudentRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.SubjectRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.TeacherRepository;
+import com.iktpreobuka.elektronskidnevnik.services.EmailService;
 import com.iktpreobuka.elektronskidnevnik.util.RestError;
 
 @RestController
 @RequestMapping(path = "/grades")
 public class GradeController {
+	@Autowired
+	public JavaMailSender emailSender;
+	@Autowired
+	EmailService emailService;
 	@Autowired
 	ClassesRepository classesRepository;
 	@Autowired
@@ -49,7 +52,7 @@ public class GradeController {
 	@Secured({ "ROLE_TEACHER", "ROLE_ADMIN", "ROLE_HEADMASTER" })
 	@PostMapping(value = "/giveGradeToStudent")
 	public ResponseEntity<?> grading(@RequestParam Integer classId, @RequestParam Integer subjectId,
-			@RequestParam Integer teacherId, @RequestParam Integer studentId, @RequestBody GradeDTO newGrade) {
+			@RequestParam Integer teacherId, @RequestParam Integer studentId, @RequestBody GradeDTO newGrade) throws Exception {
 		if (classesRepository.existsById(classId)) {
 			ClassesEntity classes = classesRepository.findById(classId).get();
 			if (subjectRepository.existsById(subjectId)
@@ -70,7 +73,12 @@ public class GradeController {
 						grade.setStudent(student);
 						gradeRepository.save(grade);
 						logger.info("student graded");
-						return new ResponseEntity<>(grade, HttpStatus.CREATED);
+						SimpleMailMessage message = new SimpleMailMessage();
+						message.setTo(student.getGuardian().getEmail());
+						message.setSubject("your child just got a new grade");
+						message.setText(student.getName()+ " " +student.getLastName() +" "+" just received new grade "+ grade.getGradeValue() + " from subject " + subject.getName());
+						emailSender.send(message);
+						return new ResponseEntity<>(message, HttpStatus.CREATED);
 
 					}return new ResponseEntity<RestError>(new RestError(7,"student isnt enrolled in this class"), HttpStatus.BAD_REQUEST);
 
