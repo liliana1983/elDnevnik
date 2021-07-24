@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.iktpreobuka.elektronskidnevnik.entities.ClassesEntity;
-import com.iktpreobuka.elektronskidnevnik.entities.EmailObject;
 import com.iktpreobuka.elektronskidnevnik.entities.GradeEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.StudentEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.SubjectEntity;
@@ -78,6 +77,7 @@ public class GradeController {
 						message.setSubject("your child just got a new grade");
 						message.setText(student.getName()+ " " +student.getLastName() +" "+" just received new grade "+ grade.getGradeValue() + " from subject " + subject.getName());
 						emailSender.send(message);
+						logger.info("email sent to Guardian");
 						return new ResponseEntity<>(message, HttpStatus.CREATED);
 
 					}return new ResponseEntity<RestError>(new RestError(7,"student isnt enrolled in this class"), HttpStatus.BAD_REQUEST);

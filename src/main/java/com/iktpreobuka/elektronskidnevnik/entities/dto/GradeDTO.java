@@ -11,7 +11,6 @@ import javax.validation.constraints.PastOrPresent;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.iktpreobuka.elektronskidnevnik.entities.GradeType;
-import com.sun.istack.NotNull;
 
 public class GradeDTO {
 	@PastOrPresent(message = "Date when grade is given cannot be in future")

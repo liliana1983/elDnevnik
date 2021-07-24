@@ -1,20 +1,17 @@
 package com.iktpreobuka.elektronskidnevnik.controllers;
 
-import java.util.List;
 import java.util.stream.Collectors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,9 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.iktpreobuka.elektronskidnevnik.entities.GuardianEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.RoleEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.StudentEntity;
-import com.iktpreobuka.elektronskidnevnik.entities.UserEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.dto.GuardianDTO;
-import com.iktpreobuka.elektronskidnevnik.entities.dto.UserDTO;
 import com.iktpreobuka.elektronskidnevnik.repositories.GuardianRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.RoleRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.StudentRepository;

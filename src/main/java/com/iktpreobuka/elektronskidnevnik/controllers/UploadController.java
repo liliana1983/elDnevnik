@@ -10,16 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.ServerProperties.Tomcat.Resource;
 import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,6 +31,7 @@ public class UploadController {
 	@Autowired
 	private FileHandler fileHandler;
 
+private final String EXTERNAL_FILE_PATH="C:\\Downloads";
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 
 	@Secured("ROLE_ADMIN")
@@ -65,6 +63,7 @@ public class UploadController {
 	@Secured("ROLE_ADMIN")
 	@GetMapping("/downloadFile")
 	public ResponseEntity<InputStreamResource> downloadFile(HttpServletRequest request) throws FileNotFoundException {
+	
 		File file = fileHandler.downloadLogs();
 		String contentType = null;
 		InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
@@ -80,4 +79,5 @@ public class UploadController {
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
 				.body(resource);
 	}
+
 }

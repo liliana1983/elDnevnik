@@ -4,8 +4,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class ClassDTO {
 	@NotBlank(message = "Class name must not be blank or null ")
 	@Size(min = 3, max = 5, message = "Classname length must be between {min} and {max}")

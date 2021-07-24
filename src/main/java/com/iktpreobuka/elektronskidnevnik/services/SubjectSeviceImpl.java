@@ -3,7 +3,6 @@ package com.iktpreobuka.elektronskidnevnik.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.iktpreobuka.elektronskidnevnik.entities.ClassesEntity;
 import com.iktpreobuka.elektronskidnevnik.repositories.ClassesRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.SubjectRepository;
 

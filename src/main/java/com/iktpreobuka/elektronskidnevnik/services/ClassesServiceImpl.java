@@ -1,6 +1,5 @@
 package com.iktpreobuka.elektronskidnevnik.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.iktpreobuka.elektronskidnevnik.entities.ClassesEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.StudentEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.TeacherEntity;
-import com.iktpreobuka.elektronskidnevnik.entities.UserEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.dto.ClassDTO;
 import com.iktpreobuka.elektronskidnevnik.repositories.ClassesRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.StudentRepository;

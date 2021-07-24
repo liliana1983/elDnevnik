@@ -1,8 +1,6 @@
 package com.iktpreobuka.elektronskidnevnik.controllers;
 
 import java.util.Date;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +8,8 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -21,7 +21,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.Validator;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -45,7 +44,6 @@ import com.iktpreobuka.elektronskidnevnik.services.UserService;
 import com.iktpreobuka.elektronskidnevnik.util.Encryption;
 import com.iktpreobuka.elektronskidnevnik.util.RestError;
 import com.iktpreobuka.elektronskidnevnik.util.UserCustomValidator;
-import com.iktpreobuka.elektronskidnevnik.util.UsernameValidator;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

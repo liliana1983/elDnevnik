@@ -1,13 +1,9 @@
 package com.iktpreobuka.elektronskidnevnik.entities.dto;
 
-import java.util.List;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-
-import com.iktpreobuka.elektronskidnevnik.entities.StudentEntity;
 
 public class GuardianDTO {
 	@NotBlank(message = "Useername must not be blank or null and should be unique")

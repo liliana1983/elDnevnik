@@ -1,14 +1,13 @@
 package com.iktpreobuka.elektronskidnevnik.controllers;
 
 import java.util.stream.Collectors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
@@ -25,7 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.iktpreobuka.elektronskidnevnik.entities.GuardianEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.RoleEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.StudentEntity;
-import com.iktpreobuka.elektronskidnevnik.entities.dto.GuardianDTO;
 import com.iktpreobuka.elektronskidnevnik.entities.dto.StudentDTO;
 import com.iktpreobuka.elektronskidnevnik.repositories.ClassesRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.GuardianRepository;
@@ -48,7 +46,7 @@ private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 @Autowired
 RoleRepository roleRepository;
 @Secured("ROLE_ADMIN")
-	@PostMapping(value = "/addStudent",produces = {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	@PostMapping(value = "/addStudent")
 	public ResponseEntity<?> createStudent(@Valid @RequestBody StudentDTO newStudent, @RequestParam Integer roleId,@RequestParam Integer guardianId,
 			BindingResult result) {
 		if (result.hasErrors())
