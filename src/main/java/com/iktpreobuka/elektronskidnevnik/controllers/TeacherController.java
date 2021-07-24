@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,23 +38,29 @@ import com.iktpreobuka.elektronskidnevnik.services.TeacherService;
 import com.iktpreobuka.elektronskidnevnik.util.Encryption;
 import com.iktpreobuka.elektronskidnevnik.util.RestError;
 import com.iktpreobuka.elektronskidnevnik.util.UserCustomValidator;
+import com.iktpreobuka.elektronskidnevnik.util.Validation;
 
 @RestController
 @RequestMapping(path = "/user/teacher")
 public class TeacherController {
 	@Autowired
 	private TeacherRepository teacherRepository;
+	
 	@Autowired
 	private UserRepository userRepository;
+	
 	@Autowired
 	TeacherService teacherService;
+	
 	@Autowired
 	RoleRepository roleRepository;
+	
 	@Autowired
 	ClassesRepository classesRepository;
 
 	@Autowired
 	private UserCustomValidator userCustomValidator;
+	
 	@Autowired
 	private Validator[] usernameValidator;
 
@@ -115,6 +122,23 @@ public class TeacherController {
 				return new ResponseEntity<>(headMaster, HttpStatus.OK);
 			}
 		}
-		return new ResponseEntity<RestError>(new RestError(6, "teacher or class with that id doesnt exist"),HttpStatus.OK);
+		return new ResponseEntity<RestError>(new RestError(6, "teacher or class with that id doesnt exist"),
+				HttpStatus.OK);
+	}
+	@Secured("ROLE_ADMIN")
+	@PutMapping(value="/changeTeacher")
+	public ResponseEntity<?> changeTeacher (@RequestParam Integer teacherId,@Valid@RequestBody TeacherDTO changedTeacher, BindingResult result ){
+		if(result.hasErrors())
+			 return new ResponseEntity<>(createErrorMessage(result), HttpStatus.BAD_REQUEST);
+		if(teacherRepository.existsById(teacherId)) {
+			TeacherEntity teacher= teacherRepository.findById(teacherId).get();
+			teacher.setName(Validation.setIfNotNull(teacher.getName(),changedTeacher.getName()));
+			teacher.setLastName(Validation.setIfNotNull(teacher.getLastName(),changedTeacher.getLastName()));
+			teacher.setUsername(Validation.setIfNotNull(teacher.getUsername(),changedTeacher.getUsername()));
+			teacher.setPassword(Validation.setIfNotNull(teacher.getPassword(),changedTeacher.getPassword()));
+			teacher.setPassword(Validation.setIfNotNull(teacher.getPassword(), changedTeacher.getConfirmPassword()));
+			return new ResponseEntity<>(teacher,HttpStatus.OK);
+		}
+		return new ResponseEntity<RestError>(new RestError(10,"Teacher with this Id doesnt exist!"),HttpStatus.BAD_REQUEST);
 	}
 }

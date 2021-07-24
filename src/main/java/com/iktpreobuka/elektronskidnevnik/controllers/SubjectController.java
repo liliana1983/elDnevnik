@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +28,7 @@ import com.iktpreobuka.elektronskidnevnik.repositories.ClassesRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.SubjectRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.TeacherRepository;
 import com.iktpreobuka.elektronskidnevnik.util.RestError;
+import com.iktpreobuka.elektronskidnevnik.util.Validation;
 
 
 @RestController
@@ -92,5 +94,30 @@ private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 			}
 		}
 		return new ResponseEntity<RestError>(new RestError(6,"class or subject not found"),HttpStatus.NOT_FOUND);
+	}
+	
+	@Secured("ROLE_ADMIN")
+	@DeleteMapping(path="/deleteSubject")
+	public ResponseEntity<?> delSubject(@RequestParam Integer Id){
+		if(subjectRepository.existsById(Id)) {
+			SubjectEntity subject= subjectRepository.findById(Id).get();
+			subjectRepository.delete(subject);
+			return new ResponseEntity<>(subject,HttpStatus.OK);}
+		
+		return new ResponseEntity<RestError>(new RestError(11,"Subject under that id doesnt exist"),HttpStatus.BAD_REQUEST);
+	}
+	@Secured("ROLE_ADMIN")
+	@PutMapping(value="/changeSubject")
+	public ResponseEntity<?> changedSubject(@RequestParam Integer subjectId, @Valid@RequestBody SubjectDTO changedSubject, BindingResult result){
+		if(result.hasErrors())
+			return new ResponseEntity<>(createErrorMessage(result), HttpStatus.BAD_REQUEST);
+		if(subjectRepository.existsById(subjectId)) {
+			SubjectEntity subject= subjectRepository.findById(subjectId).get();
+			subject.setName(Validation.setIfNotNull(subject.getName(), changedSubject.getName()));
+			subject.setHoursPerWeek(Validation.setIfNotNull(subject.getHoursPerWeek(), changedSubject.getHoursPerWeek()));
+			logger.info("subject changed"+ subject.getName() +" " + subject.getHoursPerWeek());
+			return new ResponseEntity<>(subject,HttpStatus.ACCEPTED);
+		}
+		return new ResponseEntity<RestError>(new RestError(11,"subject under given id doesnt exist"),HttpStatus.BAD_REQUEST);
 	}
 }
