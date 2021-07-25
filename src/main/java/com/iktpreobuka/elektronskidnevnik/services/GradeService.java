@@ -1,5 +1,10 @@
 package com.iktpreobuka.elektronskidnevnik.services;
 
-public interface GradeService {
+import java.util.List;
 
+import com.iktpreobuka.elektronskidnevnik.entities.GradeEntity;
+
+public interface GradeService {
+	public List<GradeEntity> getGradesSubject(Integer studentId, Integer subjectd);
+	public List<Integer> gradeValuesOneSubject(Integer studentId, Integer subjectId);
 }

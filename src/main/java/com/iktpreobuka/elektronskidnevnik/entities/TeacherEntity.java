@@ -23,6 +23,7 @@ public class TeacherEntity extends UserEntity {
 	@JsonIgnore
 	private List<ClassesEntity> classes;
 	@OneToOne(mappedBy="headMaster",cascade = CascadeType.PERSIST)
+	@JsonIgnore
 	private ClassesEntity headOfClass;
 	
 

@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -94,7 +93,7 @@ public class GuardianController {
 	}
 	
 	@Secured("ROLE_ADMIN")
-	@PutMapping("/updateGuardina")
+	@PutMapping("/updateGuardian")
 	public ResponseEntity<?> updateGuardian(@RequestParam Integer guardianId,@Valid@RequestBody GuardianDTO updateGuardian,BindingResult result){
 		if(result.hasErrors())
 			 return new ResponseEntity<>(createErrorMessage(result), HttpStatus.BAD_REQUEST);
@@ -103,9 +102,10 @@ public class GuardianController {
 			guardian.setName(Validation.setIfNotNull(guardian.getName(),updateGuardian.getName()));
 			guardian.setLastName(Validation.setIfNotNull(guardian.getLastName(),updateGuardian.getLastName()));
 			guardian.setUsername(Validation.setIfNotNull(guardian.getUsername(),updateGuardian.getUsername()));
-			guardian.setPassword(Validation.setIfNotNull(guardian.getPassword(),updateGuardian.getPassword()));
-			guardian.setPassword(Validation.setIfNotNull(guardian.getPassword(), updateGuardian.getConfirmPassword()));
+			guardian.setPassword(Validation.setIfNotNull(Encryption.getPassEncoded(guardian.getPassword()),Encryption.getPassEncoded(updateGuardian.getPassword())));
+			guardian.setPassword(Validation.setIfNotNull(Encryption.getPassEncoded(guardian.getPassword()),Encryption.getPassEncoded(updateGuardian.getConfirmPassword())));
 			guardian.setEmail(Validation.setIfNotNull(guardian.getEmail(), updateGuardian.getEmail()));
+			guardianRepository.save(guardian);
 			logger.info("Guardian updated");
 			return new ResponseEntity<>(guardian,HttpStatus.OK);
 		}

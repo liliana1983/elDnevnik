@@ -34,41 +34,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserEntity userLoggedIn() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String roles = auth.getAuthorities().toString();
+		String username = auth.getPrincipal().toString();
+		UserEntity user = userRepository.findByUsername(username);
+		return user;
 		
-		if (roles.contains("ROLE_ADMIN")) {
-			String username = auth.getPrincipal().toString();
-			UserEntity admin = userRepository.findByUsername(username);
-			return admin;
-		}
-		if (roles.contains("ROLE_TEACHER")) {
-			String username = auth.getPrincipal().toString();
-			UserEntity teacher = userRepository.findByUsername(username);
-			return teacher;
-		}
-		if (roles.contains("ROLE_GUARDIAN")) {
-			String username = auth.getPrincipal().toString();
-			UserEntity guardian = userRepository.findByUsername(username);
-			return guardian;
-		}
-
-		if (roles.contains("ROLE_STUDENT")) {
-			String username = auth.getPrincipal().toString();
-			UserEntity student = userRepository.findByUsername(username);
-			return student;
-		}
-		if (roles.contains("ROLE_STUDENT")) {
-			String username = auth.getPrincipal().toString();
-			UserEntity student = userRepository.findByUsername(username);
-			return student;
-		}
-		if (roles.contains("ROLE_HEADMASTER")) {
-			String username = auth.getPrincipal().toString();
-			UserEntity headmaster = userRepository.findByUsername(username);
-			return headmaster;
-		}
-
-		return null;
 	}
 
 }

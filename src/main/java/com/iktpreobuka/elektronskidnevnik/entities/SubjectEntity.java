@@ -22,26 +22,26 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class SubjectEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name= "subject_id")
+	@Column(name = "subject_id")
 	private Integer id;
-	
+
 	private String name;
-	
+
 	private Integer hoursPerWeek;
 	@ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-	@JoinTable(name = "teacher_teaches",
-	joinColumns= { @JoinColumn(name="subject_id")},
-	inverseJoinColumns= {@JoinColumn(name= "user_id")}) 
+	@JoinTable(name = "teacher_teaches", joinColumns = { @JoinColumn(name = "subject_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "user_id") })
 	private List<TeacherEntity> teacher;
-	@ManyToMany(fetch=FetchType.LAZY,cascade = CascadeType.REFRESH )
-	@JoinTable (name="subject_in_class",
-	joinColumns= {@JoinColumn(name="subject_id")},
-	inverseJoinColumns= {@JoinColumn (name="classes_id")})
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	@JoinTable(name = "subject_in_class", joinColumns = { @JoinColumn(name = "subject_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "classes_id") })
 	private List<ClassesEntity> classes;
+
 	@JsonIgnore
-	@OneToMany(mappedBy = "subject", fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH })
+	@OneToMany(mappedBy = "subject", fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
 	private List<GradeEntity> grades;
-	
+
 	public List<TeacherEntity> getTeacher() {
 		return teacher;
 	}
@@ -94,6 +94,5 @@ public class SubjectEntity {
 	public void setHoursPerWeek(Integer hoursPerWeek) {
 		this.hoursPerWeek = hoursPerWeek;
 	}
-	
-	
+
 }

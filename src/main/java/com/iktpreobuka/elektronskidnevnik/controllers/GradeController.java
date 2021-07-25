@@ -1,5 +1,8 @@
 package com.iktpreobuka.elektronskidnevnik.controllers;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,15 +54,15 @@ public class GradeController {
 
 	@Autowired
 	UserService userService;
-	
+
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 
-	@Secured({ "ROLE_TEACHER", "ROLE_ADMIN", "ROLE_HEADMASTER" })
+	@Secured({ "ROLE_TEACHER", "ROLE_HEADMASTER" })
 	@PostMapping(value = "/giveGradeToStudent")
 	public ResponseEntity<?> grading(@RequestParam Integer classId, @RequestParam Integer subjectId,
-			 @RequestParam Integer studentId, @RequestBody GradeDTO newGrade) throws Exception {
-		UserEntity user= userService.userLoggedIn();
-		Integer teacherId=user.getId();
+			@RequestParam Integer studentId, @RequestBody GradeDTO newGrade) throws Exception {
+		UserEntity user = userService.userLoggedIn();
+		Integer teacherId = user.getId();
 		if (classesRepository.existsById(classId)) {
 			ClassesEntity classes = classesRepository.findById(classId).get();
 			if (subjectRepository.existsById(subjectId)
@@ -82,18 +86,62 @@ public class GradeController {
 						SimpleMailMessage message = new SimpleMailMessage();
 						message.setTo(student.getGuardian().getEmail());
 						message.setSubject("your child just got a new grade");
-						message.setText(student.getName()+ " " +student.getLastName() +" "+" just received new grade "+ grade.getGradeValue() + " from subject " + subject.getName()+" given by teacher "+ teacher.getLastName()+ " "+ teacher.getName());
+						message.setText(
+								student.getName() + " " + student.getLastName() + " " + " just received new grade "
+										+ grade.getGradeValue() + " from subject " + subject.getName()
+										+ " given by teacher " + teacher.getLastName() + " " + teacher.getName());
 						emailSender.send(message);
 						logger.info("email sent to Guardian");
 						return new ResponseEntity<>(message, HttpStatus.CREATED);
 
-					}return new ResponseEntity<RestError>(new RestError(7,"student isnt enrolled in this class"), HttpStatus.BAD_REQUEST);
+					}
+					return new ResponseEntity<RestError>(new RestError(7, "student isnt enrolled in this class"),
+							HttpStatus.BAD_REQUEST);
 
-				}return new ResponseEntity<RestError>(new RestError(8,"teacher isnt teaching in this class or he isnt teaching the given subject in that class"),
+				}
+				return new ResponseEntity<RestError>(new RestError(8,
+						"teacher isnt teaching in this class or he isnt teaching the given subject in that class"),
 						HttpStatus.BAD_REQUEST);
 
-			}return new ResponseEntity<RestError>(new RestError(9,"class doesnt exist or the given subject isnt found in the perticular class"),HttpStatus.BAD_REQUEST);
-			
-		}return new ResponseEntity<RestError>(new RestError(10, "class not found"),HttpStatus.NOT_FOUND);
+			}
+			return new ResponseEntity<RestError>(
+					new RestError(9, "class doesnt exist or the given subject isnt found in the perticular class"),
+					HttpStatus.BAD_REQUEST);
+
+		}
+		return new ResponseEntity<RestError>(new RestError(10, "class not found"), HttpStatus.NOT_FOUND);
 	}
+
+	@Secured({ "ROLE_GUARDIAN", "ROLE_TEACHER", "ROLE_ADMIN" })
+	@GetMapping(value = "/showStudentsGradesOneSubject")
+	public ResponseEntity<?> showGrades(@RequestParam Integer studentId, @RequestParam Integer subjectId) {
+		if (studentRepository.existsById(studentId)) {
+			if (subjectRepository.existsById(subjectId)) {
+				SubjectEntity subject = subjectRepository.findById(subjectId).get();
+				StudentEntity student = studentRepository.findById(studentId).get();
+				if (subject.getClasses().contains(student.getEnrolledClass())) {
+					List<GradeEntity> grades = gradeRepository.findByStudentIdAndSubjectId(studentId, subjectId);
+					// prikazi samo grade values List<String> field1List =
+					// entities.stream().map(YourEntity::getField1).collect(Collectors.toList());
+					List<Integer> gradeValues = grades.stream().map(GradeEntity::getGradeValue)
+							.collect(Collectors.toList());
+					return new ResponseEntity<>(gradeValues, HttpStatus.OK);
+				}
+				return new ResponseEntity<RestError>(new RestError(11, "subject is not thought in Student's class"),
+						HttpStatus.BAD_REQUEST);
+			}
+			return new ResponseEntity<RestError>(new RestError(12, "subject with this id doesnt exist"),
+					HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<RestError>(new RestError(13, "Student with this id doesnt exist"),
+				HttpStatus.BAD_REQUEST);
+
+	}
+
+/*	@Secured("ROLE_TEACHER")
+	@GetMapping(value="get average")
+	public ResponseEntity<?> gradeAverage(){
+		
+	}*/
 }
+

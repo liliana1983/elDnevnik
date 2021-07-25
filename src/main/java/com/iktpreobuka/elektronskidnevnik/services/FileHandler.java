@@ -2,9 +2,7 @@ package com.iktpreobuka.elektronskidnevnik.services;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
-import org.springframework.core.io.UrlResource;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 

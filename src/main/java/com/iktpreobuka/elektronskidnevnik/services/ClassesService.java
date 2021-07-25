@@ -1,11 +1,6 @@
 package com.iktpreobuka.elektronskidnevnik.services;
 
-import java.util.List;
-
-import javax.validation.Valid;
-
 import com.iktpreobuka.elektronskidnevnik.entities.ClassesEntity;
-import com.iktpreobuka.elektronskidnevnik.entities.StudentEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.dto.ClassDTO;
 
 public interface ClassesService {
