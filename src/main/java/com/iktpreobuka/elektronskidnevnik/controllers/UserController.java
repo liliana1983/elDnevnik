@@ -104,6 +104,7 @@ public class UserController {
 			UserDTO user = new UserDTO();
 			user.setUser(username);
 			user.setToken(token);
+			logger.info("User logged in");
 			return new ResponseEntity<>(user, HttpStatus.OK);
 		}
 		return new ResponseEntity<>("Wrong credentials", HttpStatus.UNAUTHORIZED);
@@ -157,6 +158,7 @@ public class UserController {
 			UserEntity user= userRepository.findById(userId).get();
 			user.setRole(role);
 			userRepository.save(user);
+			logger.info("User connected with role");
 			return new ResponseEntity<>(user,HttpStatus.OK);
 		}return new ResponseEntity<RestError>(new RestError(2,"user doesnt exists with this ID number"), HttpStatus.NO_CONTENT);
 	}

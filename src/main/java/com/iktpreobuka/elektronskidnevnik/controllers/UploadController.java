@@ -31,7 +31,6 @@ public class UploadController {
 	@Autowired
 	private FileHandler fileHandler;
 
-private final String EXTERNAL_FILE_PATH="C:\\Downloads";
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 
 	@Secured("ROLE_ADMIN")
@@ -75,6 +74,7 @@ private final String EXTERNAL_FILE_PATH="C:\\Downloads";
 		if (contentType == null) {
 			contentType = "application/octet-stream";
 		}
+		logger.info("file downloaded");
 		return ResponseEntity.ok().contentType(MediaType.parseMediaType(contentType))
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
 				.body(resource);

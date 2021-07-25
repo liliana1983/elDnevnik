@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,6 +31,7 @@ import com.iktpreobuka.elektronskidnevnik.repositories.RoleRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.StudentRepository;
 import com.iktpreobuka.elektronskidnevnik.util.Encryption;
 import com.iktpreobuka.elektronskidnevnik.util.RestError;
+import com.iktpreobuka.elektronskidnevnik.util.Validation;
 
 @RestController
 @RequestMapping(path = "/user/guardian")
@@ -88,5 +91,31 @@ public class GuardianController {
 			}
 		}
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@Secured("ROLE_ADMIN")
+	@PutMapping("/updateGuardina")
+	public ResponseEntity<?> updateGuardian(@RequestParam Integer guardianId,@Valid@RequestBody GuardianDTO updateGuardian,BindingResult result){
+		if(result.hasErrors())
+			 return new ResponseEntity<>(createErrorMessage(result), HttpStatus.BAD_REQUEST);
+		if(guardianRepository.existsById(guardianId)) {
+			GuardianEntity guardian= guardianRepository.findById(guardianId).get();
+			guardian.setName(Validation.setIfNotNull(guardian.getName(),updateGuardian.getName()));
+			guardian.setLastName(Validation.setIfNotNull(guardian.getLastName(),updateGuardian.getLastName()));
+			guardian.setUsername(Validation.setIfNotNull(guardian.getUsername(),updateGuardian.getUsername()));
+			guardian.setPassword(Validation.setIfNotNull(guardian.getPassword(),updateGuardian.getPassword()));
+			guardian.setPassword(Validation.setIfNotNull(guardian.getPassword(), updateGuardian.getConfirmPassword()));
+			guardian.setEmail(Validation.setIfNotNull(guardian.getEmail(), updateGuardian.getEmail()));
+			logger.info("Guardian updated");
+			return new ResponseEntity<>(guardian,HttpStatus.OK);
+		}
+		return new ResponseEntity<RestError>(new RestError(10,"Guardian with this Id doesnt exist!"),HttpStatus.BAD_REQUEST);
+		
+	}
+	@Secured("ROLE_ADMIN")
+	@GetMapping("/")
+	public ResponseEntity<?> getAllGuardians(){
+		logger.info("All guardians listed");
+		return new ResponseEntity<>(guardianRepository.findAll(),HttpStatus.OK);
 	}
 }

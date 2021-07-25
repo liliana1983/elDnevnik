@@ -85,6 +85,7 @@ public class TeacherController {
 	public ResponseEntity<?> getAllTeachers() {
 		List<TeacherEntity> teachers = new ArrayList<>();
 		teachers = teacherService.findAllTeachers();
+		logger.info("All Teachers listed");
 		return new ResponseEntity<>(teachers, HttpStatus.FOUND);
 	}
 
@@ -137,8 +138,17 @@ public class TeacherController {
 			teacher.setUsername(Validation.setIfNotNull(teacher.getUsername(),changedTeacher.getUsername()));
 			teacher.setPassword(Validation.setIfNotNull(teacher.getPassword(),changedTeacher.getPassword()));
 			teacher.setPassword(Validation.setIfNotNull(teacher.getPassword(), changedTeacher.getConfirmPassword()));
+			logger.info("Teacher updated");
 			return new ResponseEntity<>(teacher,HttpStatus.OK);
 		}
 		return new ResponseEntity<RestError>(new RestError(10,"Teacher with this Id doesnt exist!"),HttpStatus.BAD_REQUEST);
+	}
+	@Secured("ROLE_ADMIN")
+	@DeleteMapping("/delTeacher")
+	public ResponseEntity<?> delTeacher (@RequestParam Integer teacherId){
+	TeacherEntity teacher=	teacherRepository.findById(teacherId).get();
+	teacherRepository.delete(teacher);
+	logger.info("Teacher deleted");
+		return new ResponseEntity<>(teacher,HttpStatus.OK);
 	}
 }

@@ -19,6 +19,7 @@ import com.iktpreobuka.elektronskidnevnik.entities.GradeEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.StudentEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.SubjectEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.TeacherEntity;
+import com.iktpreobuka.elektronskidnevnik.entities.UserEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.dto.GradeDTO;
 import com.iktpreobuka.elektronskidnevnik.repositories.ClassesRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.GradeRepository;
@@ -26,6 +27,7 @@ import com.iktpreobuka.elektronskidnevnik.repositories.StudentRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.SubjectRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.TeacherRepository;
 import com.iktpreobuka.elektronskidnevnik.services.EmailService;
+import com.iktpreobuka.elektronskidnevnik.services.UserService;
 import com.iktpreobuka.elektronskidnevnik.util.RestError;
 
 @RestController
@@ -46,12 +48,17 @@ public class GradeController {
 	@Autowired
 	GradeRepository gradeRepository;
 
+	@Autowired
+	UserService userService;
+	
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 
 	@Secured({ "ROLE_TEACHER", "ROLE_ADMIN", "ROLE_HEADMASTER" })
 	@PostMapping(value = "/giveGradeToStudent")
 	public ResponseEntity<?> grading(@RequestParam Integer classId, @RequestParam Integer subjectId,
-			@RequestParam Integer teacherId, @RequestParam Integer studentId, @RequestBody GradeDTO newGrade) throws Exception {
+			 @RequestParam Integer studentId, @RequestBody GradeDTO newGrade) throws Exception {
+		UserEntity user= userService.userLoggedIn();
+		Integer teacherId=user.getId();
 		if (classesRepository.existsById(classId)) {
 			ClassesEntity classes = classesRepository.findById(classId).get();
 			if (subjectRepository.existsById(subjectId)
@@ -75,7 +82,7 @@ public class GradeController {
 						SimpleMailMessage message = new SimpleMailMessage();
 						message.setTo(student.getGuardian().getEmail());
 						message.setSubject("your child just got a new grade");
-						message.setText(student.getName()+ " " +student.getLastName() +" "+" just received new grade "+ grade.getGradeValue() + " from subject " + subject.getName());
+						message.setText(student.getName()+ " " +student.getLastName() +" "+" just received new grade "+ grade.getGradeValue() + " from subject " + subject.getName()+" given by teacher "+ teacher.getLastName()+ " "+ teacher.getName());
 						emailSender.send(message);
 						logger.info("email sent to Guardian");
 						return new ResponseEntity<>(message, HttpStatus.CREATED);
