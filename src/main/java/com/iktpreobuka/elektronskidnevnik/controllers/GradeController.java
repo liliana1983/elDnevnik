@@ -31,6 +31,7 @@ import com.iktpreobuka.elektronskidnevnik.repositories.StudentRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.SubjectRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.TeacherRepository;
 import com.iktpreobuka.elektronskidnevnik.services.EmailService;
+import com.iktpreobuka.elektronskidnevnik.services.GradeService;
 import com.iktpreobuka.elektronskidnevnik.services.UserService;
 import com.iktpreobuka.elektronskidnevnik.util.RestError;
 
@@ -51,6 +52,8 @@ public class GradeController {
 	StudentRepository studentRepository;
 	@Autowired
 	GradeRepository gradeRepository;
+	@Autowired
+	GradeService gradeService;
 
 	@Autowired
 	UserService userService;
@@ -115,14 +118,14 @@ public class GradeController {
 	@Secured({ "ROLE_GUARDIAN", "ROLE_TEACHER", "ROLE_ADMIN" })
 	@GetMapping(value = "/showStudentsGradesOneSubject")
 	public ResponseEntity<?> showGrades(@RequestParam Integer studentId, @RequestParam Integer subjectId) {
-		if (studentRepository.existsById(studentId)) {
-			if (subjectRepository.existsById(subjectId)) {
+		//UserEntity user = userService.userLoggedIn();
+		//Integer userId = user.getId();		posebno metode za sve, plus headmaster takodje, jer ne moze svaki roditelj da vidi ocenu bilo kog deteta, vec samo roditelj
+		if (studentRepository.existsById(studentId)) {								//cije je to dete, takodje i nastavnik koji predaje tom razredy moze da gleda ocene
+			if (subjectRepository.existsById(subjectId)) {								// i razredni staresina i naravno admin
 				SubjectEntity subject = subjectRepository.findById(subjectId).get();
 				StudentEntity student = studentRepository.findById(studentId).get();
 				if (subject.getClasses().contains(student.getEnrolledClass())) {
 					List<GradeEntity> grades = gradeRepository.findByStudentIdAndSubjectId(studentId, subjectId);
-					// prikazi samo grade values List<String> field1List =
-					// entities.stream().map(YourEntity::getField1).collect(Collectors.toList());
 					List<Integer> gradeValues = grades.stream().map(GradeEntity::getGradeValue)
 							.collect(Collectors.toList());
 					logger.info("grades listed");
@@ -139,10 +142,20 @@ public class GradeController {
 
 	}
 
-/*	@Secured("ROLE_TEACHER")
-	@GetMapping(value="get average")
-	public ResponseEntity<?> gradeAverage(){
+	@Secured("ROLE_TEACHER")
+	@GetMapping(value="/get average")
+	public ResponseEntity<?> gradeAverage(@RequestParam Integer studentId, @RequestParam Integer subjectId){
+		List<Integer> gradeList= gradeService.gradeValuesOneSubject(studentId, subjectId);
+		Double average=gradeService.calculateAverage(gradeList);
+	return new ResponseEntity<>(average,HttpStatus.OK);
 		
-	}*/
+	}
+	@Secured("ROLE_TEACHER")
+	@GetMapping(value="/closingGrade")
+	public ResponseEntity<?> closeGrade(@RequestParam Integer studentId, @RequestParam Integer subjectId){
+		List<Integer> gradeList= gradeService.gradeValuesOneSubject(studentId, subjectId);
+		Double average=gradeService.calculateAverage(gradeList);
+		Double closingGrade= gradeService.closeGrade(average);
+		return new ResponseEntity<>(closingGrade,HttpStatus.OK);
+	}
 }
-
