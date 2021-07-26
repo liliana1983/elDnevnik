@@ -3,6 +3,7 @@ package com.iktpreobuka.elektronskidnevnik.services;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.math3.util.Precision;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,5 +56,11 @@ public class GradeServiceImpl implements GradeService {
 	                .average()
 	                .orElse(0.0);
 	    return average;
+	}
+
+	@Override
+	public Double closeGrade(Double average) {
+		Double closingGrade=Precision.round(average, 2);
+		return closingGrade;
 	}
 }
