@@ -125,6 +125,7 @@ public class GradeController {
 					// entities.stream().map(YourEntity::getField1).collect(Collectors.toList());
 					List<Integer> gradeValues = grades.stream().map(GradeEntity::getGradeValue)
 							.collect(Collectors.toList());
+					logger.info("grades listed");
 					return new ResponseEntity<>(gradeValues, HttpStatus.OK);
 				}
 				return new ResponseEntity<RestError>(new RestError(11, "subject is not thought in Student's class"),

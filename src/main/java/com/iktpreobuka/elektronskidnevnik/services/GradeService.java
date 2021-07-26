@@ -7,4 +7,5 @@ import com.iktpreobuka.elektronskidnevnik.entities.GradeEntity;
 public interface GradeService {
 	public List<GradeEntity> getGradesSubject(Integer studentId, Integer subjectd);
 	public List<Integer> gradeValuesOneSubject(Integer studentId, Integer subjectId);
+	public double calculateAverage(List <Integer> gradeValues);
 }

@@ -47,4 +47,13 @@ public class GradeServiceImpl implements GradeService {
 		}
 		return null;
 	}
+	@Override
+	public double calculateAverage(List <Integer> gradeValues) {
+		
+	    Double average= gradeValues.stream()
+	                .mapToDouble(d -> d)
+	                .average()
+	                .orElse(0.0);
+	    return average;
+	}
 }

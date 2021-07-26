@@ -3381,3 +3381,40 @@ Using generated security password: 5338cf80-d7b5-4175-b6f0-34bdaf6a76e9
 2021-07-25 23:47:06.046 DEBUG 11720 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
 2021-07-25 23:47:06.176  INFO 11720 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
 2021-07-25 23:47:06.231  INFO 11720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-07-25 23:47:06.242  INFO 11720 --- [restartedMain] c.i.e.ElektronskiDnevnikApplication      : Started ElektronskiDnevnikApplication in 2.801 seconds (JVM running for 173.537)
+2021-07-25 23:47:06.248  INFO 11720 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-07-25 23:49:46.405  INFO 11720 --- [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-07-25 23:49:46.406  INFO 11720 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2021-07-25 23:49:46.411  INFO 11720 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2021-07-25 23:49:46.587  INFO 11720 --- [restartedMain] c.i.e.ElektronskiDnevnikApplication      : Starting ElektronskiDnevnikApplication using Java 15.0.2 on DESKTOP-1DG5QMU with PID 11720 (C:\Users\HP\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\elektronski_dnevnik\target\classes started by HP in C:\Users\HP\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\elektronski_dnevnik)
+2021-07-25 23:49:46.588  INFO 11720 --- [restartedMain] c.i.e.ElektronskiDnevnikApplication      : No active profile set, falling back to default profiles: default
+2021-07-25 23:49:47.087  INFO 11720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-07-25 23:49:47.167  INFO 11720 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 79 ms. Found 9 JPA repository interfaces.
+2021-07-25 23:49:47.351  INFO 11720 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@33898720' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-07-25 23:49:47.355  INFO 11720 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-07-25 23:49:47.468  INFO 11720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-07-25 23:49:47.470  INFO 11720 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-07-25 23:49:47.470  INFO 11720 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
+2021-07-25 23:49:47.553  INFO 11720 --- [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2021-07-25 23:49:47.553  INFO 11720 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 960 ms
+2021-07-25 23:49:47.692  INFO 11720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2021-07-25 23:49:47.745  INFO 11720 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2021-07-25 23:49:48.236  INFO 11720 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-07-25 23:49:48.286  WARN 11720 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-07-25 23:49:48.769  INFO 11720 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: d46b0271-8c26-45ca-aba4-0af0d4c437bd
+
+2021-07-25 23:49:48.794  INFO 11720 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@570b118d, org.springframework.security.web.context.SecurityContextPersistenceFilter@3444374c, org.springframework.security.web.header.HeaderWriterFilter@7529022f, org.springframework.security.web.authentication.logout.LogoutFilter@1d44c47a, com.iktpreobuka.elektronskidnevnik.config.JWTAuthorizationFilter@31e587a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2ebc902a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1339d7a8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@f6de917, org.springframework.security.web.session.SessionManagementFilter@716d4c1f, org.springframework.security.web.access.ExceptionTranslationFilter@43bb3b3d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@c255e43]
+2021-07-25 23:49:48.910 DEBUG 11720 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2021-07-25 23:49:48.979 DEBUG 11720 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 37 mappings in 'requestMappingHandlerMapping'
+2021-07-25 23:49:49.022 DEBUG 11720 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2021-07-25 23:49:49.041 DEBUG 11720 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2021-07-25 23:49:49.229  INFO 11720 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-07-25 23:49:49.270  INFO 11720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-07-25 23:49:49.281  INFO 11720 --- [restartedMain] c.i.e.ElektronskiDnevnikApplication      : Started ElektronskiDnevnikApplication in 2.772 seconds (JVM running for 336.575)
+2021-07-25 23:49:49.284  INFO 11720 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-07-25 23:50:21.787  INFO 11720 --- [RMI TCP Connection(9)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-07-25 23:50:21.822  INFO 11720 --- [RMI TCP Connection(9)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-07-25 23:50:21.824  INFO 11720 --- [RMI TCP Connection(9)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
+2021-07-25 23:50:21.831  INFO 11720 --- [RMI TCP Connection(9)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
