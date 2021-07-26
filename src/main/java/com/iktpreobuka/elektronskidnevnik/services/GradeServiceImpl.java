@@ -48,9 +48,10 @@ public class GradeServiceImpl implements GradeService {
 		}
 		return null;
 	}
+	
 	@Override
-	public double calculateAverage(List <Integer> gradeValues) {
-		
+	public double calculateAverage(Integer subjectId,Integer studentId) {
+	List<Integer> gradeValues=	gradeValuesOneSubject(subjectId, studentId);
 	    Double average= gradeValues.stream()
 	                .mapToDouble(d -> d)
 	                .average()
@@ -60,7 +61,7 @@ public class GradeServiceImpl implements GradeService {
 
 	@Override
 	public Double closeGrade(Double average) {
-		Double closingGrade=Precision.round(average, 2);
+		Double closingGrade=Precision.round(average, 0);
 		return closingGrade;
 	}
 }

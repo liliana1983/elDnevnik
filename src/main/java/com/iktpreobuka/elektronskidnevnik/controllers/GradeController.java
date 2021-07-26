@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.iktpreobuka.elektronskidnevnik.entities.ClassesEntity;
+import com.iktpreobuka.elektronskidnevnik.entities.FinalGradeEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.GradeEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.StudentEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.SubjectEntity;
@@ -143,19 +144,21 @@ public class GradeController {
 	}
 
 	@Secured("ROLE_TEACHER")
-	@GetMapping(value="/get average")
+	@GetMapping(value="/getAverage")
 	public ResponseEntity<?> gradeAverage(@RequestParam Integer studentId, @RequestParam Integer subjectId){
-		List<Integer> gradeList= gradeService.gradeValuesOneSubject(studentId, subjectId);
-		Double average=gradeService.calculateAverage(gradeList);
+		//List<Integer> gradeList= gradeService.gradeValuesOneSubject(studentId, subjectId);
+		Double average=gradeService.calculateAverage(subjectId,studentId);
 	return new ResponseEntity<>(average,HttpStatus.OK);
 		
 	}
 	@Secured("ROLE_TEACHER")
 	@GetMapping(value="/closingGrade")
 	public ResponseEntity<?> closeGrade(@RequestParam Integer studentId, @RequestParam Integer subjectId){
-		List<Integer> gradeList= gradeService.gradeValuesOneSubject(studentId, subjectId);
-		Double average=gradeService.calculateAverage(gradeList);
+		//gradeService.getGradesSubject(studentId, subjectId);
+		//List<Integer> gradeList= gradeService.gradeValuesOneSubject(studentId, subjectId);
+		Double average=gradeService.calculateAverage(subjectId,studentId);
 		Double closingGrade= gradeService.closeGrade(average);
+		
 		return new ResponseEntity<>(closingGrade,HttpStatus.OK);
 	}
 }
