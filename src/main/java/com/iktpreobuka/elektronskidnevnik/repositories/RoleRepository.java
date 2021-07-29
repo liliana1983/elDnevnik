@@ -6,4 +6,5 @@ import com.iktpreobuka.elektronskidnevnik.entities.RoleEntity;
 
 public interface RoleRepository extends CrudRepository<RoleEntity,Integer>{
 
+	RoleEntity findByName(String name);
 }

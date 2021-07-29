@@ -6,6 +6,15 @@ import javax.persistence.Entity;
 public class FinalGradeEntity extends GradeEntity{
 
  private Boolean pass;
+ private Semester semester;
+
+public Semester getSemester() {
+	return semester;
+}
+
+public void setSemester(Semester semester) {
+	this.semester = semester;
+}
 
 public FinalGradeEntity() {
 	super();

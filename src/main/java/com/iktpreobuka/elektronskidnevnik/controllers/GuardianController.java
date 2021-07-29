@@ -28,6 +28,7 @@ import com.iktpreobuka.elektronskidnevnik.entities.dto.GuardianDTO;
 import com.iktpreobuka.elektronskidnevnik.repositories.GuardianRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.RoleRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.StudentRepository;
+import com.iktpreobuka.elektronskidnevnik.services.GuardianService;
 import com.iktpreobuka.elektronskidnevnik.util.Encryption;
 import com.iktpreobuka.elektronskidnevnik.util.RestError;
 import com.iktpreobuka.elektronskidnevnik.util.Validation;
@@ -40,25 +41,18 @@ public class GuardianController {
 	@Autowired
 	RoleRepository roleRepository;
 	@Autowired
+	GuardianService guardianService;
+	@Autowired
 	StudentRepository studentRepository;
+
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 
 	@Secured("ROLE_ADMIN")
 	@PostMapping(value = "/addGuardian")
-	public ResponseEntity<?> createGuardian(@Valid @RequestBody GuardianDTO newGuardian, @RequestParam Integer roleId,
-			BindingResult result) {
+	public ResponseEntity<?> createGuardian(@Valid @RequestBody GuardianDTO newGuardian,BindingResult result) {
 		if (result.hasErrors())
 			return new ResponseEntity<>(createErrorMessage(result), HttpStatus.BAD_REQUEST);
-		GuardianEntity guardian = new GuardianEntity();
-		guardian.setName(newGuardian.getName());
-		guardian.setLastName(newGuardian.getLastName());
-		guardian.setPassword(Encryption.getPassEncoded(newGuardian.getPassword()));
-		guardian.setPassword(Encryption.getPassEncoded(newGuardian.getConfirmPassword()));
-		guardian.setUsername(newGuardian.getUsername());
-		guardian.setEmail(newGuardian.getEmail());
-		RoleEntity rola = roleRepository.findById(roleId).get();
-		guardian.setRole(rola);
-		guardianRepository.save(guardian);
+		GuardianEntity guardian = guardianService.newGuardian(newGuardian);
 		logger.info("guardian created");
 		return new ResponseEntity<>(guardian, HttpStatus.CREATED);
 	}
@@ -91,31 +85,36 @@ public class GuardianController {
 		}
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	
+
 	@Secured("ROLE_ADMIN")
 	@PutMapping("/updateGuardian")
-	public ResponseEntity<?> updateGuardian(@RequestParam Integer guardianId,@Valid@RequestBody GuardianDTO updateGuardian,BindingResult result){
-		if(result.hasErrors())
-			 return new ResponseEntity<>(createErrorMessage(result), HttpStatus.BAD_REQUEST);
-		if(guardianRepository.existsById(guardianId)) {
-			GuardianEntity guardian= guardianRepository.findById(guardianId).get();
-			guardian.setName(Validation.setIfNotNull(guardian.getName(),updateGuardian.getName()));
-			guardian.setLastName(Validation.setIfNotNull(guardian.getLastName(),updateGuardian.getLastName()));
-			guardian.setUsername(Validation.setIfNotNull(guardian.getUsername(),updateGuardian.getUsername()));
-			guardian.setPassword(Validation.setIfNotNull(Encryption.getPassEncoded(guardian.getPassword()),Encryption.getPassEncoded(updateGuardian.getPassword())));
-			guardian.setPassword(Validation.setIfNotNull(Encryption.getPassEncoded(guardian.getPassword()),Encryption.getPassEncoded(updateGuardian.getConfirmPassword())));
+	public ResponseEntity<?> updateGuardian(@RequestParam Integer guardianId,
+			@Valid @RequestBody GuardianDTO updateGuardian, BindingResult result) {
+		if (result.hasErrors())
+			return new ResponseEntity<>(createErrorMessage(result), HttpStatus.BAD_REQUEST);
+		if (guardianRepository.existsById(guardianId)) {
+			GuardianEntity guardian = guardianRepository.findById(guardianId).get();
+			guardian.setName(Validation.setIfNotNull(guardian.getName(), updateGuardian.getName()));
+			guardian.setLastName(Validation.setIfNotNull(guardian.getLastName(), updateGuardian.getLastName()));
+			guardian.setUsername(Validation.setIfNotNull(guardian.getUsername(), updateGuardian.getUsername()));
+			guardian.setPassword(Validation.setIfNotNull(Encryption.getPassEncoded(guardian.getPassword()),
+					Encryption.getPassEncoded(updateGuardian.getPassword())));
+			guardian.setPassword(Validation.setIfNotNull(Encryption.getPassEncoded(guardian.getPassword()),
+					Encryption.getPassEncoded(updateGuardian.getConfirmPassword())));
 			guardian.setEmail(Validation.setIfNotNull(guardian.getEmail(), updateGuardian.getEmail()));
 			guardianRepository.save(guardian);
 			logger.info("Guardian updated");
-			return new ResponseEntity<>(guardian,HttpStatus.OK);
+			return new ResponseEntity<>(guardian, HttpStatus.OK);
 		}
-		return new ResponseEntity<RestError>(new RestError(10,"Guardian with this Id doesnt exist!"),HttpStatus.BAD_REQUEST);
-		
+		return new ResponseEntity<RestError>(new RestError(10, "Guardian with this Id doesnt exist!"),
+				HttpStatus.BAD_REQUEST);
+
 	}
+
 	@Secured("ROLE_ADMIN")
 	@GetMapping("/")
-	public ResponseEntity<?> getAllGuardians(){
+	public ResponseEntity<?> getAllGuardians() {
 		logger.info("All guardians listed");
-		return new ResponseEntity<>(guardianRepository.findAll(),HttpStatus.OK);
+		return new ResponseEntity<>(guardianRepository.findAll(), HttpStatus.OK);
 	}
 }

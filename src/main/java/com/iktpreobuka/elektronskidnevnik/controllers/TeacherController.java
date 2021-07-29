@@ -138,6 +138,7 @@ public class TeacherController {
 			teacher.setUsername(Validation.setIfNotNull(teacher.getUsername(),changedTeacher.getUsername()));
 			teacher.setPassword(Validation.setIfNotNull(teacher.getPassword(),changedTeacher.getPassword()));
 			teacher.setPassword(Validation.setIfNotNull(teacher.getPassword(), changedTeacher.getConfirmPassword()));
+			teacherRepository.save(teacher);
 			logger.info("Teacher updated");
 			return new ResponseEntity<>(teacher,HttpStatus.OK);
 		}

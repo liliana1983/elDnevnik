@@ -99,7 +99,7 @@ public class GradeController {
 						return new ResponseEntity<>(message, HttpStatus.CREATED);
 
 					}
-					return new ResponseEntity<RestError>(new RestError(7, "student isnt enrolled in this class"),
+					return new ResponseEntity<RestError>(new RestError(7, "student isn't enrolled in this class"),
 							HttpStatus.BAD_REQUEST);
 
 				}
@@ -146,19 +146,77 @@ public class GradeController {
 	@Secured("ROLE_TEACHER")
 	@GetMapping(value="/getAverage")
 	public ResponseEntity<?> gradeAverage(@RequestParam Integer studentId, @RequestParam Integer subjectId){
-		//List<Integer> gradeList= gradeService.gradeValuesOneSubject(studentId, subjectId);
+		
 		Double average=gradeService.calculateAverage(subjectId,studentId);
+		logger.info("average grade for subject:  " + subjectRepository.findById(subjectId).get().getName() + " for student "+ studentRepository.findById(studentId).get().getName()+ " "+studentRepository.findById(studentId).get().getLastName()+" is listed" );
 	return new ResponseEntity<>(average,HttpStatus.OK);
 		
 	}
 	@Secured("ROLE_TEACHER")
 	@GetMapping(value="/closingGrade")
 	public ResponseEntity<?> closeGrade(@RequestParam Integer studentId, @RequestParam Integer subjectId){
-		//gradeService.getGradesSubject(studentId, subjectId);
-		//List<Integer> gradeList= gradeService.gradeValuesOneSubject(studentId, subjectId);
+		
 		Double average=gradeService.calculateAverage(subjectId,studentId);
 		Double closingGrade= gradeService.closeGrade(average);
-		
+		logger.info("Proposal of final grade for subject:  " + subjectRepository.findById(subjectId).get().getName() + " for student "+ studentRepository.findById(studentId).get().getName()+ " "+studentRepository.findById(studentId).get().getLastName()+" is listed" );
+
 		return new ResponseEntity<>(closingGrade,HttpStatus.OK);
 	}
+	@Secured({ "ROLE_TEACHER", "ROLE_HEADMASTER" })
+	@PostMapping(value = "/giveFinalGradeToStudent")
+	public ResponseEntity<?> finalGrade(@RequestParam Integer classId, @RequestParam Integer subjectId,
+			@RequestParam Integer studentId, @RequestBody FinalGradeEntity finalGrade) throws Exception {
+		UserEntity user = userService.userLoggedIn();
+		Integer teacherId = user.getId();
+		if (classesRepository.existsById(classId)) {
+			ClassesEntity classes = classesRepository.findById(classId).get();
+			if (subjectRepository.existsById(subjectId)
+					&& classes.getListOfSubjects().contains(subjectRepository.findById(subjectId).get())) {
+				SubjectEntity subject = subjectRepository.findById(subjectId).get();
+				if (teacherRepository.existsById(teacherId)
+						&& classes.getTeacher().contains(teacherRepository.findById(teacherId).get())
+						&& subject.getTeacher().contains(teacherRepository.findById(teacherId).get())) {
+					TeacherEntity teacher = teacherRepository.findById(teacherId).get();
+					if (studentRepository.existsById(studentId)
+							&& classes.getStudents().contains(studentRepository.findById(studentId).get())) {
+						StudentEntity student = studentRepository.findById(studentId).get();
+						FinalGradeEntity grade = new FinalGradeEntity();
+						grade.setGradeValue(finalGrade.getGradeValue());
+						grade.setDateWhenGiven(finalGrade.getDateWhenGiven());
+						grade.setGradeType(finalGrade.getGradeType());
+						grade.setSubject(subject);
+						grade.setStudent(student);
+						grade.setPass(finalGrade.getPass());
+						grade.setSemester(finalGrade.getSemester());
+						gradeRepository.save(grade);
+						logger.info("student graded");
+						SimpleMailMessage message = new SimpleMailMessage();
+						message.setTo(student.getGuardian().getEmail());
+						message.setSubject("your child just got a new grade");
+						message.setText(
+								student.getName() + " " + student.getLastName() + " " + " just received new grade "
+										+ grade.getGradeValue() + " from subject " + subject.getName()
+										+ " given by teacher " + teacher.getLastName() + " " + teacher.getName());
+						emailSender.send(message);
+						logger.info("email sent to Guardian");
+						return new ResponseEntity<>(message, HttpStatus.CREATED);
+
+					}
+					return new ResponseEntity<RestError>(new RestError(7, "student isnt enrolled in this class"),
+							HttpStatus.BAD_REQUEST);
+
+				}
+				return new ResponseEntity<RestError>(new RestError(8,
+						"teacher isnt teaching in this class or he isnt teaching the given subject in that class"),
+						HttpStatus.BAD_REQUEST);
+
+			}
+			return new ResponseEntity<RestError>(
+					new RestError(9, "class doesnt exist or the given subject isnt found in the perticular class"),
+					HttpStatus.BAD_REQUEST);
+
+		}
+		return new ResponseEntity<RestError>(new RestError(10, "class not found"), HttpStatus.NOT_FOUND);
+	}
+	
 }
