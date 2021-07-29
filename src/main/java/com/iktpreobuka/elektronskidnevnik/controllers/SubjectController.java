@@ -50,7 +50,7 @@ public class SubjectController {
 	@PostMapping(value = "/addSubject")
 	public ResponseEntity<?> createSubject(@Valid @RequestBody SubjectDTO newSubject, BindingResult result) {
 		if (result.hasErrors())
-			return new ResponseEntity<>(createErrorMessage(result), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(Validation.createErrorMessage(result), HttpStatus.BAD_REQUEST);
 		SubjectEntity subject = new SubjectEntity();
 		subject.setName(newSubject.getName());
 		subject.setHoursPerWeek(newSubject.getHoursPerWeek());
@@ -59,9 +59,7 @@ public class SubjectController {
 		return new ResponseEntity<>(subject, HttpStatus.CREATED);
 	}
 
-	private String createErrorMessage(BindingResult result) {
-		return result.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.joining("\n"));
-	}
+	
 
 	@Secured("ROLE_ADMIN")
 	@PutMapping(path = "/addTeacherForSubject")
@@ -122,7 +120,7 @@ public class SubjectController {
 	public ResponseEntity<?> changedSubject(@RequestParam Integer subjectId,
 			@Valid @RequestBody SubjectDTO changedSubject, BindingResult result) {
 		if (result.hasErrors())
-			return new ResponseEntity<>(createErrorMessage(result), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(Validation.createErrorMessage(result), HttpStatus.BAD_REQUEST);
 		if (subjectRepository.existsById(subjectId)) {
 			SubjectEntity subject = subjectRepository.findById(subjectId).get();
 			subject.setName(Validation.setIfNotNull(subject.getName(), changedSubject.getName()));

@@ -1,7 +1,5 @@
 package com.iktpreobuka.elektronskidnevnik.controllers;
 
-import java.util.stream.Collectors;
-
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -11,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -22,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.iktpreobuka.elektronskidnevnik.entities.GuardianEntity;
-import com.iktpreobuka.elektronskidnevnik.entities.RoleEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.StudentEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.dto.GuardianDTO;
 import com.iktpreobuka.elektronskidnevnik.repositories.GuardianRepository;
@@ -51,15 +47,12 @@ public class GuardianController {
 	@PostMapping(value = "/addGuardian")
 	public ResponseEntity<?> createGuardian(@Valid @RequestBody GuardianDTO newGuardian,BindingResult result) {
 		if (result.hasErrors())
-			return new ResponseEntity<>(createErrorMessage(result), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(Validation.createErrorMessage(result), HttpStatus.BAD_REQUEST);
 		GuardianEntity guardian = guardianService.newGuardian(newGuardian);
 		logger.info("guardian created");
 		return new ResponseEntity<>(guardian, HttpStatus.CREATED);
 	}
 
-	private String createErrorMessage(BindingResult result) {
-		return result.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.joining("\n"));
-	}
 
 	@Secured("ROLE_ADMIN")
 	@RequestMapping(method = RequestMethod.DELETE, value = "/")
@@ -91,7 +84,7 @@ public class GuardianController {
 	public ResponseEntity<?> updateGuardian(@RequestParam Integer guardianId,
 			@Valid @RequestBody GuardianDTO updateGuardian, BindingResult result) {
 		if (result.hasErrors())
-			return new ResponseEntity<>(createErrorMessage(result), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(Validation.createErrorMessage(result), HttpStatus.BAD_REQUEST);
 		if (guardianRepository.existsById(guardianId)) {
 			GuardianEntity guardian = guardianRepository.findById(guardianId).get();
 			guardian.setName(Validation.setIfNotNull(guardian.getName(), updateGuardian.getName()));

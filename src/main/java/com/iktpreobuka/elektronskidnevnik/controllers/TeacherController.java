@@ -95,15 +95,7 @@ public class TeacherController {
 			BindingResult result) {
 		if (result.hasErrors())
 			return new ResponseEntity<>(createErrorMessage(result), HttpStatus.BAD_REQUEST);
-		TeacherEntity teacher = new TeacherEntity();
-		teacher.setName(newTeacher.getName());
-		teacher.setLastName(newTeacher.getLastName());
-		teacher.setPassword(Encryption.getPassEncoded(newTeacher.getPassword()));
-		teacher.setPassword(Encryption.getPassEncoded(newTeacher.getConfirmPassword()));
-		teacher.setUsername(newTeacher.getUsername());
-		RoleEntity rola = roleRepository.findById(roleId).get();
-		teacher.setRole(rola);
-		teacherRepository.save(teacher);
+		TeacherEntity teacher= teacherService.newTeacher(newTeacher, roleId);
 		logger.info(teacher.toString(), "teacher added");
 		return new ResponseEntity<>(teacher, HttpStatus.CREATED);
 	}
@@ -136,8 +128,8 @@ public class TeacherController {
 			teacher.setName(Validation.setIfNotNull(teacher.getName(),changedTeacher.getName()));
 			teacher.setLastName(Validation.setIfNotNull(teacher.getLastName(),changedTeacher.getLastName()));
 			teacher.setUsername(Validation.setIfNotNull(teacher.getUsername(),changedTeacher.getUsername()));
-			teacher.setPassword(Validation.setIfNotNull(teacher.getPassword(),changedTeacher.getPassword()));
-			teacher.setPassword(Validation.setIfNotNull(teacher.getPassword(), changedTeacher.getConfirmPassword()));
+			teacher.setPassword(Validation.setIfNotNull(teacher.getPassword(),Encryption.getPassEncoded(changedTeacher.getPassword())));
+			teacher.setPassword(Validation.setIfNotNull(teacher.getPassword(),Encryption.getPassEncoded(changedTeacher.getConfirmPassword())));
 			teacherRepository.save(teacher);
 			logger.info("Teacher updated");
 			return new ResponseEntity<>(teacher,HttpStatus.OK);

@@ -2,7 +2,6 @@ package com.iktpreobuka.elektronskidnevnik.controllers;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -14,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -39,6 +37,7 @@ import com.iktpreobuka.elektronskidnevnik.repositories.TeacherRepository;
 import com.iktpreobuka.elektronskidnevnik.services.ClassesService;
 import com.iktpreobuka.elektronskidnevnik.util.ClassesValidator;
 import com.iktpreobuka.elektronskidnevnik.util.RestError;
+import com.iktpreobuka.elektronskidnevnik.util.Validation;
 
 @RestController
 @RequestMapping(path = "/class")
@@ -64,9 +63,7 @@ public class ClassController {
 	@Autowired
 	ClassesRepository classesRepository;
 
-	private String createErrorMessage(BindingResult result) {
-		return result.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.joining("\n"));
-	}
+	
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
@@ -84,7 +81,7 @@ public class ClassController {
 	public ResponseEntity<?> addClass(@Valid @RequestBody ClassDTO newClass, @RequestParam Integer headMasterId,
 			BindingResult result) {
 		if (result.hasErrors())
-			return new ResponseEntity<>(createErrorMessage(result), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(Validation.createErrorMessage(result), HttpStatus.BAD_REQUEST);
 		classesService.addClassWithHeadMAster(newClass, headMasterId);
 		logger.info("class created");
 		return new ResponseEntity<>(newClass, HttpStatus.CREATED);

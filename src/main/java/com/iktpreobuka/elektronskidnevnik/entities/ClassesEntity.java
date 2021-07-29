@@ -26,6 +26,7 @@ public class ClassesEntity {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "classes_id")
 	private Integer id;
+	
 	private String className;
 
 	@OneToOne
