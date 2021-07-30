@@ -27,6 +27,7 @@ import com.iktpreobuka.elektronskidnevnik.entities.TeacherEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.UserEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.dto.GradeDTO;
 import com.iktpreobuka.elektronskidnevnik.repositories.ClassesRepository;
+import com.iktpreobuka.elektronskidnevnik.repositories.FinalGradeRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.GradeRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.StudentRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.SubjectRepository;
@@ -55,6 +56,8 @@ public class GradeController {
 	GradeRepository gradeRepository;
 	@Autowired
 	GradeService gradeService;
+	@Autowired
+	FinalGradeRepository finalGradeRepository;
 
 	@Autowired
 	UserService userService;
@@ -183,18 +186,17 @@ public class GradeController {
 						FinalGradeEntity grade = new FinalGradeEntity();
 						grade.setGradeValue(finalGrade.getGradeValue());
 						grade.setDateWhenGiven(finalGrade.getDateWhenGiven());
-						grade.setGradeType(finalGrade.getGradeType());
 						grade.setSubject(subject);
 						grade.setStudent(student);
 						grade.setPass(finalGrade.getPass());
 						grade.setSemester(finalGrade.getSemester());
-						gradeRepository.save(grade);
+						finalGradeRepository.save(grade);
 						logger.info("student graded");
 						SimpleMailMessage message = new SimpleMailMessage();
 						message.setTo(student.getGuardian().getEmail());
-						message.setSubject("your child just got a new grade");
+						message.setSubject("Final grade given");
 						message.setText(
-								student.getName() + " " + student.getLastName() + " " + " just received new grade "
+								student.getName() + " " + student.getLastName() + " " + " just received final grade "
 										+ grade.getGradeValue() + " from subject " + subject.getName()
 										+ " given by teacher " + teacher.getLastName() + " " + teacher.getName());
 						emailSender.send(message);

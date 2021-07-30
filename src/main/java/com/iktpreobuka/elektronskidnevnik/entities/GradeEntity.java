@@ -13,8 +13,10 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class GradeEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +30,9 @@ public class GradeEntity {
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
 	@JoinColumn(name="student")
 	private StudentEntity student;
-	
+	@JsonFormat(
+			shape = JsonFormat.Shape.STRING,
+			pattern = "dd-MM-yyyy")
 	private LocalDate dateWhenGiven;
 	
 	private Integer gradeValue;
