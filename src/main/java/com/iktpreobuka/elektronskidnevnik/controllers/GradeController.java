@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.iktpreobuka.elektronskidnevnik.entities.ClassesEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.FinalGradeEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.GradeEntity;
+import com.iktpreobuka.elektronskidnevnik.entities.GuardianEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.StudentEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.SubjectEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.TeacherEntity;
@@ -29,6 +30,7 @@ import com.iktpreobuka.elektronskidnevnik.entities.dto.GradeDTO;
 import com.iktpreobuka.elektronskidnevnik.repositories.ClassesRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.FinalGradeRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.GradeRepository;
+import com.iktpreobuka.elektronskidnevnik.repositories.GuardianRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.StudentRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.SubjectRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.TeacherRepository;
@@ -58,6 +60,8 @@ public class GradeController {
 	GradeService gradeService;
 	@Autowired
 	FinalGradeRepository finalGradeRepository;
+	@Autowired
+	GuardianRepository guardianRepository;
 
 	@Autowired
 	UserService userService;
@@ -119,13 +123,16 @@ public class GradeController {
 		return new ResponseEntity<RestError>(new RestError(10, "class not found"), HttpStatus.NOT_FOUND);
 	}
 
-	@Secured({ "ROLE_GUARDIAN", "ROLE_TEACHER", "ROLE_ADMIN" })
+	@Secured("ROLE_ADMIN")
 	@GetMapping(value = "/showStudentsGradesOneSubject")
 	public ResponseEntity<?> showGrades(@RequestParam Integer studentId, @RequestParam Integer subjectId) {
-		UserEntity user = userService.userLoggedIn();
-		Integer userId = user.getId();	//	posebno metode za sve, plus headmaster takodje, jer ne moze svaki roditelj da vidi ocenu bilo kog deteta, vec samo roditelj
-		if (studentRepository.existsById(studentId)) {								//cije je to dete, takodje i nastavnik koji predaje tom razredy moze da gleda ocene
-			if (subjectRepository.existsById(subjectId)) {		
+		// UserEntity user = userService.userLoggedIn();
+		// Integer userId = user.getId(); // posebno metode za sve, plus headmaster
+		// takodje, jer ne moze svaki roditelj da vidi ocenu bilo kog deteta, vec samo
+		// roditelj
+		if (studentRepository.existsById(studentId)) { // cije je to dete, takodje i nastavnik koji predaje tom razredy
+														// moze da gleda ocene
+			if (subjectRepository.existsById(subjectId)) {
 				SubjectEntity subject = subjectRepository.findById(subjectId).get();
 				StudentEntity student = studentRepository.findById(studentId).get();
 				if (subject.getClasses().contains(student.getEnrolledClass())) {
@@ -147,24 +154,87 @@ public class GradeController {
 	}
 
 	@Secured("ROLE_TEACHER")
-	@GetMapping(value="/getAverage")
-	public ResponseEntity<?> gradeAverage(@RequestParam Integer studentId, @RequestParam Integer subjectId){
-		
-		Double average=gradeService.calculateAverage(subjectId,studentId);
-		logger.info("average grade for subject:  " + subjectRepository.findById(subjectId).get().getName() + " for student "+ studentRepository.findById(studentId).get().getName()+ " "+studentRepository.findById(studentId).get().getLastName()+" is listed" );
-	return new ResponseEntity<>(average,HttpStatus.OK);
-		
+	@GetMapping(value = "/showStudentsGradesOneSubjectToTeacher")
+	public ResponseEntity<?> showGradesToTeacher(@RequestParam Integer studentId, @RequestParam Integer subjectId) {
+		UserEntity user = userService.userLoggedIn();
+		Integer userId = user.getId();
+		if (subjectRepository.existsById(subjectId)) {
+			if (studentRepository.existsById(studentId) && studentRepository.findById(studentId).get()
+					.getEnrolledClass().getListOfSubjects().contains(subjectRepository.findById(subjectId).get())) {
+				SubjectEntity subject = subjectRepository.findById(subjectId).get();
+				StudentEntity student = studentRepository.findById(studentId).get();
+				if (teacherRepository.existsById(userId)
+						&& subject.getTeacher().contains(teacherRepository.findById(userId).get())
+						&& teacherRepository.findById(userId).get().getClasses().contains(student.getEnrolledClass())) {
+					TeacherEntity teacher = teacherRepository.findById(userId).get();
+					if (subject.getClasses().contains(student.getEnrolledClass())) {
+						List<GradeEntity> grades = gradeRepository.findByStudentIdAndSubjectId(studentId, subjectId);
+						List<Integer> gradeValues = grades.stream().map(GradeEntity::getGradeValue)
+								.collect(Collectors.toList());
+						logger.info("grades listed");
+						return new ResponseEntity<>(gradeValues, HttpStatus.OK);
+					}
+					return new ResponseEntity<RestError>(new RestError(11, "subject is not thought in Student's class"),
+							HttpStatus.BAD_REQUEST);
+				}
+				return new ResponseEntity<RestError>(
+						new RestError(12, "Teacher with this id isnt teaching in this class"), HttpStatus.BAD_REQUEST);
+			}
+			return new ResponseEntity<RestError>(new RestError(13,
+					"Student with this Id doesnt exist or he is not enrolled in this class and not listening to the given subject"),
+					HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<RestError>(new RestError(14, "subject with this id doesnt exist"),
+				HttpStatus.BAD_REQUEST);
 	}
-	@Secured("ROLE_TEACHER")
-	@GetMapping(value="/closingGrade")
-	public ResponseEntity<?> closeGrade(@RequestParam Integer studentId, @RequestParam Integer subjectId){
-		
-		Double average=gradeService.calculateAverage(subjectId,studentId);
-		Double closingGrade= gradeService.closeGrade(average);
-		logger.info("Proposal of final grade for subject:  " + subjectRepository.findById(subjectId).get().getName() + " for student "+ studentRepository.findById(studentId).get().getName()+ " "+studentRepository.findById(studentId).get().getLastName()+" is listed" );
 
-		return new ResponseEntity<>(closingGrade,HttpStatus.OK);
+	@Secured("ROLE_GUARDIAN")
+	@GetMapping(value = "/showStudentsGradesOneSubjectToGuardian")
+	public ResponseEntity<?> showGradesToGuardian(@RequestParam Integer studentId, @RequestParam Integer subjectId) {
+		UserEntity user = userService.userLoggedIn();
+		Integer userId = user.getId();
+		GuardianEntity guardian = guardianRepository.findById(userId).get();
+		if (studentRepository.existsById(studentId)) {
+			StudentEntity student= studentRepository.findById(studentId).get();
+			if (guardian.getChildren().contains(studentRepository.findById(studentId).get())) {
+				if (subjectRepository.existsById(subjectId)) {
+					SubjectEntity subject= subjectRepository.findById(subjectId).get();
+						List<GradeEntity> grades = gradeRepository.findByStudentIdAndSubjectId(studentId, subjectId);
+						List<Integer> gradeValues = grades.stream().map(GradeEntity::getGradeValue)
+								.collect(Collectors.toList());
+						logger.info("Guardian listed grades");
+						return new ResponseEntity<>(gradeValues, HttpStatus.OK);	
+						
+				}return new ResponseEntity<RestError>(new RestError(18,"subject doesnt exist"),HttpStatus.BAD_REQUEST);
+			}return new ResponseEntity <RestError>(new RestError(19,"Logged in user isn't guardian of the given student"),HttpStatus.BAD_REQUEST);
+		}return new ResponseEntity<RestError>(new RestError(20,"student with given Id doesnt exist"),HttpStatus.BAD_REQUEST);
 	}
+
+	@Secured("ROLE_TEACHER")
+	@GetMapping(value = "/getAverage")
+	public ResponseEntity<?> gradeAverage(@RequestParam Integer studentId, @RequestParam Integer subjectId) {
+
+		Double average = gradeService.calculateAverage(subjectId, studentId);
+		logger.info("average grade for subject:  " + subjectRepository.findById(subjectId).get().getName()
+				+ " for student " + studentRepository.findById(studentId).get().getName() + " "
+				+ studentRepository.findById(studentId).get().getLastName() + " is listed");
+		return new ResponseEntity<>(average, HttpStatus.OK);
+
+	}
+
+	@Secured("ROLE_TEACHER")
+	@GetMapping(value = "/closingGrade")
+	public ResponseEntity<?> closeGrade(@RequestParam Integer studentId, @RequestParam Integer subjectId) {
+
+		Double average = gradeService.calculateAverage(subjectId, studentId);
+		Double closingGrade = gradeService.closeGrade(average);
+		logger.info("Proposal of final grade for subject:  " + subjectRepository.findById(subjectId).get().getName()
+				+ " for student " + studentRepository.findById(studentId).get().getName() + " "
+				+ studentRepository.findById(studentId).get().getLastName() + " is listed");
+
+		return new ResponseEntity<>(closingGrade, HttpStatus.OK);
+	}
+
 	@Secured({ "ROLE_TEACHER", "ROLE_HEADMASTER" })
 	@PostMapping(value = "/giveFinalGradeToStudent")
 	public ResponseEntity<?> finalGrade(@RequestParam Integer classId, @RequestParam Integer subjectId,
@@ -220,5 +290,5 @@ public class GradeController {
 		}
 		return new ResponseEntity<RestError>(new RestError(10, "class not found"), HttpStatus.NOT_FOUND);
 	}
-	
+
 }

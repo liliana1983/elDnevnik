@@ -3649,3 +3649,426 @@ Using generated security password: 0d11b3f0-a706-4dfc-bf31-78ec45e0d3f9
 2021-07-30 20:28:01.292  INFO 3448 --- [http-nio-8080-exec-1] c.i.e.controllers.GradeController        : student graded
 2021-07-30 20:28:03.154  INFO 3448 --- [http-nio-8080-exec-1] c.i.e.controllers.GradeController        : email sent to Guardian
 2021-07-30 20:28:03.187 DEBUG 3448 --- [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-07-30 20:28:03.189 DEBUG 3448 --- [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [SimpleMailMessage: from=null; replyTo=null; to=ljisha83@gmail.com; cc=; bcc=; sentDate=null; subject (truncated)...]
+2021-07-30 20:28:03.224 DEBUG 3448 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 201 CREATED
+2021-07-30 21:36:36.400  WARN 3448 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=58m45s54ms226µs300ns).
+2021-07-30 21:57:14.525  INFO 3448 --- [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-07-30 21:57:14.564  INFO 3448 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-07-30 21:57:14.672  INFO 3448 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-07-30 21:57:15.184  INFO 3448 --- [restartedMain] c.i.e.ElektronskiDnevnikApplication      : Starting ElektronskiDnevnikApplication using Java 15.0.2 on DESKTOP-1DG5QMU with PID 3448 (C:\Users\HP\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\elektronski_dnevnik\target\classes started by HP in C:\Users\HP\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\elektronski_dnevnik)
+2021-07-30 21:57:15.185  INFO 3448 --- [restartedMain] c.i.e.ElektronskiDnevnikApplication      : No active profile set, falling back to default profiles: default
+2021-07-30 21:57:16.957  INFO 3448 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-07-30 21:57:17.083  INFO 3448 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 125 ms. Found 9 JPA repository interfaces.
+2021-07-30 21:57:17.303  INFO 3448 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@742f2966' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-07-30 21:57:17.307  INFO 3448 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-07-30 21:57:17.491  INFO 3448 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-07-30 21:57:17.494  INFO 3448 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-07-30 21:57:17.494  INFO 3448 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
+2021-07-30 21:57:17.614  INFO 3448 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-07-30 21:57:17.615  INFO 3448 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2414 ms
+2021-07-30 21:57:17.724  INFO 3448 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2021-07-30 21:57:17.772  INFO 3448 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2021-07-30 21:57:18.632  INFO 3448 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-07-30 21:57:18.673  WARN 3448 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-07-30 21:57:19.082  INFO 3448 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 35d60645-02a5-49f0-b095-bcf38f0ad4ed
+
+2021-07-30 21:57:19.105  INFO 3448 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3982b7b, org.springframework.security.web.context.SecurityContextPersistenceFilter@37989034, org.springframework.security.web.header.HeaderWriterFilter@5fcadd16, org.springframework.security.web.authentication.logout.LogoutFilter@31b7057f, com.iktpreobuka.elektronskidnevnik.config.JWTAuthorizationFilter@509ede65, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7247ae0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@e8f357f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7258d424, org.springframework.security.web.session.SessionManagementFilter@377be2c0, org.springframework.security.web.access.ExceptionTranslationFilter@624a48d7, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@72415031]
+2021-07-30 21:57:19.195 DEBUG 3448 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2021-07-30 21:57:19.220  WARN 3448 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'gradeController' method 
+com.iktpreobuka.elektronskidnevnik.controllers.GradeController#showGradesToTeacher(Integer, Integer)
+to {GET [/grades/showStudentsGradesOneSubject]}: There is already 'gradeController' bean method
+com.iktpreobuka.elektronskidnevnik.controllers.GradeController#showGrades(Integer, Integer) mapped.
+2021-07-30 21:57:19.224  INFO 3448 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-07-30 21:57:19.224  INFO 3448 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2021-07-30 21:57:19.227  INFO 3448 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2021-07-30 21:57:19.229  INFO 3448 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2021-07-30 21:57:19.249  INFO 3448 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-07-30 21:57:19.448 ERROR 3448 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'gradeController' method 
+com.iktpreobuka.elektronskidnevnik.controllers.GradeController#showGradesToTeacher(Integer, Integer)
+to {GET [/grades/showStudentsGradesOneSubject]}: There is already 'gradeController' bean method
+com.iktpreobuka.elektronskidnevnik.controllers.GradeController#showGrades(Integer, Integer) mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1786) ~[spring-beans-5.3.8.jar:5.3.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:602) ~[spring-beans-5.3.8.jar:5.3.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:524) ~[spring-beans-5.3.8.jar:5.3.8]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.8.jar:5.3.8]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.8.jar:5.3.8]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.8.jar:5.3.8]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.8.jar:5.3.8]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:944) ~[spring-beans-5.3.8.jar:5.3.8]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918) ~[spring-context-5.3.8.jar:5.3.8]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.8.jar:5.3.8]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145) ~[spring-boot-2.5.2.jar:2.5.2]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754) ~[spring-boot-2.5.2.jar:2.5.2]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434) ~[spring-boot-2.5.2.jar:2.5.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:338) ~[spring-boot-2.5.2.jar:2.5.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343) ~[spring-boot-2.5.2.jar:2.5.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1332) ~[spring-boot-2.5.2.jar:2.5.2]
+	at com.iktpreobuka.elektronskidnevnik.ElektronskiDnevnikApplication.main(ElektronskiDnevnikApplication.java:14) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.5.2.jar:2.5.2]
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'gradeController' method 
+com.iktpreobuka.elektronskidnevnik.controllers.GradeController#showGradesToTeacher(Integer, Integer)
+to {GET [/grades/showStudentsGradesOneSubject]}: There is already 'gradeController' bean method
+com.iktpreobuka.elektronskidnevnik.controllers.GradeController#showGrades(Integer, Integer) mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:663) ~[spring-webmvc-5.3.8.jar:5.3.8]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:629) ~[spring-webmvc-5.3.8.jar:5.3.8]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:328) ~[spring-webmvc-5.3.8.jar:5.3.8]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:395) ~[spring-webmvc-5.3.8.jar:5.3.8]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:76) ~[spring-webmvc-5.3.8.jar:5.3.8]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$2(AbstractHandlerMethodMapping.java:298) ~[spring-webmvc-5.3.8.jar:5.3.8]
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:723) ~[na:na]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:296) ~[spring-webmvc-5.3.8.jar:5.3.8]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:265) ~[spring-webmvc-5.3.8.jar:5.3.8]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:224) ~[spring-webmvc-5.3.8.jar:5.3.8]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:212) ~[spring-webmvc-5.3.8.jar:5.3.8]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:206) ~[spring-webmvc-5.3.8.jar:5.3.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1845) ~[spring-beans-5.3.8.jar:5.3.8]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1782) ~[spring-beans-5.3.8.jar:5.3.8]
+	... 21 common frames omitted
+
+2021-07-30 21:57:59.500  INFO 13388 --- [restartedMain] c.i.e.ElektronskiDnevnikApplication      : Starting ElektronskiDnevnikApplication using Java 15.0.2 on DESKTOP-1DG5QMU with PID 13388 (C:\Users\HP\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\elektronski_dnevnik\target\classes started by HP in C:\Users\HP\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\elektronski_dnevnik)
+2021-07-30 21:57:59.506  INFO 13388 --- [restartedMain] c.i.e.ElektronskiDnevnikApplication      : No active profile set, falling back to default profiles: default
+2021-07-30 21:57:59.601  INFO 13388 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-07-30 21:57:59.602  INFO 13388 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-07-30 21:58:01.534  INFO 13388 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-07-30 21:58:01.698  INFO 13388 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 148 ms. Found 9 JPA repository interfaces.
+2021-07-30 21:58:02.258  INFO 13388 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@6d38f9c0' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-07-30 21:58:02.265  INFO 13388 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-07-30 21:58:02.777  INFO 13388 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-07-30 21:58:02.790  INFO 13388 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-07-30 21:58:02.791  INFO 13388 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
+2021-07-30 21:58:02.986  INFO 13388 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-07-30 21:58:02.987  INFO 13388 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3383 ms
+2021-07-30 21:58:03.705  INFO 13388 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-07-30 21:58:04.344  INFO 13388 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-07-30 21:58:07.000  INFO 13388 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-07-30 21:58:07.096  WARN 13388 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-07-30 21:58:08.871  INFO 13388 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: e52da542-7bdc-4cc7-9edb-4cbcbc0385f9
+
+2021-07-30 21:58:09.193  INFO 13388 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2d7a2535, org.springframework.security.web.context.SecurityContextPersistenceFilter@120cc7c3, org.springframework.security.web.header.HeaderWriterFilter@58c8cf6b, org.springframework.security.web.authentication.logout.LogoutFilter@3814df24, com.iktpreobuka.elektronskidnevnik.config.JWTAuthorizationFilter@26cb6216, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@44903340, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@703c134f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@60441724, org.springframework.security.web.session.SessionManagementFilter@4d0812a0, org.springframework.security.web.access.ExceptionTranslationFilter@7561333c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2ca7196c]
+2021-07-30 21:58:09.556 DEBUG 13388 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2021-07-30 21:58:09.888 DEBUG 13388 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 44 mappings in 'requestMappingHandlerMapping'
+2021-07-30 21:58:09.995 DEBUG 13388 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2021-07-30 21:58:10.037 DEBUG 13388 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2021-07-30 21:58:10.451  INFO 13388 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-07-30 21:58:10.593  INFO 13388 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-07-30 21:58:10.611  INFO 13388 --- [restartedMain] c.i.e.ElektronskiDnevnikApplication      : Started ElektronskiDnevnikApplication in 11.795 seconds (JVM running for 13.139)
+2021-07-30 22:02:41.433  INFO 13388 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-07-30 22:02:41.434  INFO 13388 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-07-30 22:02:41.435 DEBUG 13388 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2021-07-30 22:02:41.436 DEBUG 13388 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2021-07-30 22:02:41.436 DEBUG 13388 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2021-07-30 22:02:41.438 DEBUG 13388 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@1cb93e83
+2021-07-30 22:02:41.440 DEBUG 13388 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@74543b9b
+2021-07-30 22:02:41.440 DEBUG 13388 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2021-07-30 22:02:41.441  INFO 13388 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2021-07-30 22:02:41.486 DEBUG 13388 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : POST "/login?username=ljisha&pwd=pass", parameters={masked}
+2021-07-30 22:02:41.492 DEBUG 13388 --- [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.iktpreobuka.elektronskidnevnik.controllers.UserController#login(String, String)
+2021-07-30 22:02:42.535  INFO 13388 --- [http-nio-8080-exec-2] c.i.e.controllers.UserController         : token created
+2021-07-30 22:02:42.536  INFO 13388 --- [http-nio-8080-exec-2] c.i.e.controllers.UserController         : User logged in
+2021-07-30 22:02:42.639 DEBUG 13388 --- [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-07-30 22:02:42.640 DEBUG 13388 --- [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.iktpreobuka.elektronskidnevnik.entities.dto.UserDTO@47dc4a5e]
+2021-07-30 22:02:42.693 DEBUG 13388 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-07-30 22:02:55.457 DEBUG 13388 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : POST "/user/student/addStudent?roleId=5&guardianId=3", parameters={masked}
+2021-07-30 22:02:55.459 DEBUG 13388 --- [http-nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.iktpreobuka.elektronskidnevnik.controllers.StudentController#createStudent(StudentDTO, Integer, Integer, BindingResult)
+2021-07-30 22:02:55.621 DEBUG 13388 --- [http-nio-8080-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.iktpreobuka.elektronskidnevnik.entities.dto.StudentDTO@7d05b3e0]
+2021-07-30 22:02:55.870  WARN 13388 --- [http-nio-8080-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<?> com.iktpreobuka.elektronskidnevnik.controllers.StudentController.createStudent(com.iktpreobuka.elektronskidnevnik.entities.dto.StudentDTO,java.lang.Integer,java.lang.Integer,org.springframework.validation.BindingResult): [Field error in object 'studentDTO' on field 'username': rejected value [nole10]; codes [UniqueUsername.studentDTO.username,UniqueUsername.username,UniqueUsername.java.lang.String,UniqueUsername]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [studentDTO.username,username]; arguments []; default message [username]]; default message [Username should be unique. 'nole10' is already taken]] ]
+2021-07-30 22:02:55.871 DEBUG 13388 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+2021-07-30 22:02:55.875 DEBUG 13388 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for POST "/error?roleId=5&guardianId=3", parameters={masked}
+2021-07-30 22:02:55.878 DEBUG 13388 --- [http-nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2021-07-30 22:02:55.888 DEBUG 13388 --- [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-07-30 22:02:55.889 DEBUG 13388 --- [http-nio-8080-exec-3] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Fri Jul 30 22:02:55 CEST 2021, status=400, error=Bad Request, trace=org.springframework.w (truncated)...]
+2021-07-30 22:02:55.947 DEBUG 13388 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 400
+2021-07-30 22:03:53.947 DEBUG 13388 --- [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : POST "/user/guardian/addGuardian", parameters={}
+2021-07-30 22:03:53.948 DEBUG 13388 --- [http-nio-8080-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.iktpreobuka.elektronskidnevnik.controllers.GuardianController#createGuardian(GuardianDTO, BindingResult)
+2021-07-30 22:03:53.954 DEBUG 13388 --- [http-nio-8080-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.iktpreobuka.elektronskidnevnik.entities.dto.GuardianDTO@77934c6f]
+2021-07-30 22:03:54.846  INFO 13388 --- [http-nio-8080-exec-5] c.i.e.controllers.GuardianController     : guardian created
+2021-07-30 22:03:54.850 DEBUG 13388 --- [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-07-30 22:03:54.850 DEBUG 13388 --- [http-nio-8080-exec-5] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.iktpreobuka.elektronskidnevnik.entities.GuardianEntity@5fa525ca]
+2021-07-30 22:03:54.853 DEBUG 13388 --- [http-nio-8080-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 201 CREATED
+2021-07-30 22:04:34.861 DEBUG 13388 --- [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error?studentId=11&subjectId=22", parameters={masked}
+2021-07-30 22:04:34.862 DEBUG 13388 --- [http-nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2021-07-30 22:04:34.862 DEBUG 13388 --- [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-07-30 22:04:34.863 DEBUG 13388 --- [http-nio-8080-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Fri Jul 30 22:04:34 CEST 2021, status=403, error=Forbidden, message=JWT expired at 2021-0 (truncated)...]
+2021-07-30 22:04:34.864 DEBUG 13388 --- [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 403
+2021-07-30 22:04:41.482 DEBUG 13388 --- [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/grades/closingGrade?studentId=11&subjectId=22", parameters={masked}
+2021-07-30 22:04:41.483 DEBUG 13388 --- [http-nio-8080-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.iktpreobuka.elektronskidnevnik.controllers.GradeController#closeGrade(Integer, Integer)
+2021-07-30 22:04:41.494 DEBUG 13388 --- [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Failed to complete request: org.springframework.security.access.AccessDeniedException: Access is denied
+2021-07-30 22:04:41.497 DEBUG 13388 --- [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : "ERROR" dispatch for GET "/error?studentId=11&subjectId=22", parameters={masked}
+2021-07-30 22:04:41.499 DEBUG 13388 --- [http-nio-8080-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2021-07-30 22:04:41.503 DEBUG 13388 --- [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-07-30 22:04:41.503 DEBUG 13388 --- [http-nio-8080-exec-7] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [{timestamp=Fri Jul 30 22:04:41 CEST 2021, status=403, error=Forbidden, trace=org.springframework.sec (truncated)...]
+2021-07-30 22:04:41.507 DEBUG 13388 --- [http-nio-8080-exec-7] o.s.web.servlet.DispatcherServlet        : Exiting from "ERROR" dispatch, status 403
+2021-07-30 22:04:46.535 DEBUG 13388 --- [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : POST "/login?username=jecavu&pwd=1234jj", parameters={masked}
+2021-07-30 22:04:46.536 DEBUG 13388 --- [http-nio-8080-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.iktpreobuka.elektronskidnevnik.controllers.UserController#login(String, String)
+2021-07-30 22:04:46.826  INFO 13388 --- [http-nio-8080-exec-8] c.i.e.controllers.UserController         : token created
+2021-07-30 22:04:46.826  INFO 13388 --- [http-nio-8080-exec-8] c.i.e.controllers.UserController         : User logged in
+2021-07-30 22:04:46.827 DEBUG 13388 --- [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-07-30 22:04:46.827 DEBUG 13388 --- [http-nio-8080-exec-8] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.iktpreobuka.elektronskidnevnik.entities.dto.UserDTO@46017564]
+2021-07-30 22:04:46.829 DEBUG 13388 --- [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-07-30 22:04:57.894 DEBUG 13388 --- [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : GET "/grades/closingGrade?studentId=11&subjectId=22", parameters={masked}
+2021-07-30 22:04:57.895 DEBUG 13388 --- [http-nio-8080-exec-9] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.iktpreobuka.elektronskidnevnik.controllers.GradeController#closeGrade(Integer, Integer)
+2021-07-30 22:04:58.197  INFO 13388 --- [http-nio-8080-exec-9] c.i.e.controllers.GradeController        : Proposal of final grade for subject:  fizika for student Novak Curcic is listed
+2021-07-30 22:04:58.201 DEBUG 13388 --- [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-07-30 22:04:58.201 DEBUG 13388 --- [http-nio-8080-exec-9] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [4.0]
+2021-07-30 22:04:58.204 DEBUG 13388 --- [http-nio-8080-exec-9] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-07-30 22:05:22.656 DEBUG 13388 --- [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : POST "/addUser", parameters={}
+2021-07-30 22:05:22.665 DEBUG 13388 --- [http-nio-8080-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.iktpreobuka.elektronskidnevnik.controllers.UserController#createUser(UserDTO, Integer, BindingResult)
+2021-07-30 22:05:22.673 DEBUG 13388 --- [http-nio-8080-exec-10] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.iktpreobuka.elektronskidnevnik.entities.dto.UserDTO@3db4f873]
+2021-07-30 22:05:22.731 DEBUG 13388 --- [http-nio-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.iktpreobuka.elektronskidnevnik.controllers.UserController#handleValidationExceptions(MethodArgumentNotValidException)
+2021-07-30 22:05:22.734 DEBUG 13388 --- [http-nio-8080-exec-10] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-07-30 22:05:22.735 DEBUG 13388 --- [http-nio-8080-exec-10] m.m.a.RequestResponseBodyMethodProcessor : Writing [{confirmPassword=Password length must be between 5 and 15, username=Username should be unique. 'guci (truncated)...]
+2021-07-30 22:05:22.738  WARN 13388 --- [http-nio-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<?> com.iktpreobuka.elektronskidnevnik.controllers.UserController.createUser(com.iktpreobuka.elektronskidnevnik.entities.dto.UserDTO,java.lang.Integer,org.springframework.validation.BindingResult) with 2 errors: [Field error in object 'userDTO' on field 'confirmPassword': rejected value [1234]; codes [Size.userDTO.confirmPassword,Size.confirmPassword,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userDTO.confirmPassword,confirmPassword]; arguments []; default message [confirmPassword],15,5]; default message [Password length must be between 5 and 15]] [Field error in object 'userDTO' on field 'username': rejected value [guci013]; codes [UniqueUsername.userDTO.username,UniqueUsername.username,UniqueUsername.java.lang.String,UniqueUsername]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userDTO.username,username]; arguments []; default message [username]]; default message [Username should be unique. 'guci013' is already taken]] ]
+2021-07-30 22:05:22.739 DEBUG 13388 --- [http-nio-8080-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+2021-07-30 22:05:36.467 DEBUG 13388 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : POST "/addUser", parameters={}
+2021-07-30 22:05:36.468 DEBUG 13388 --- [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.iktpreobuka.elektronskidnevnik.controllers.UserController#createUser(UserDTO, Integer, BindingResult)
+2021-07-30 22:05:36.470 DEBUG 13388 --- [http-nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.iktpreobuka.elektronskidnevnik.entities.dto.UserDTO@154a38b5]
+2021-07-30 22:05:36.476 DEBUG 13388 --- [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.iktpreobuka.elektronskidnevnik.controllers.UserController#handleValidationExceptions(MethodArgumentNotValidException)
+2021-07-30 22:05:36.476 DEBUG 13388 --- [http-nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-07-30 22:05:36.476 DEBUG 13388 --- [http-nio-8080-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Writing [{confirmPassword=Password length must be between 5 and 15, username=Username should be unique. 'guci (truncated)...]
+2021-07-30 22:05:36.478  WARN 13388 --- [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<?> com.iktpreobuka.elektronskidnevnik.controllers.UserController.createUser(com.iktpreobuka.elektronskidnevnik.entities.dto.UserDTO,java.lang.Integer,org.springframework.validation.BindingResult) with 2 errors: [Field error in object 'userDTO' on field 'username': rejected value [guci013]; codes [UniqueUsername.userDTO.username,UniqueUsername.username,UniqueUsername.java.lang.String,UniqueUsername]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userDTO.username,username]; arguments []; default message [username]]; default message [Username should be unique. 'guci013' is already taken]] [Field error in object 'userDTO' on field 'confirmPassword': rejected value [1234]; codes [Size.userDTO.confirmPassword,Size.confirmPassword,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userDTO.confirmPassword,confirmPassword]; arguments []; default message [confirmPassword],15,5]; default message [Password length must be between 5 and 15]] ]
+2021-07-30 22:05:36.478 DEBUG 13388 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+2021-07-30 22:05:42.054 DEBUG 13388 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : POST "/addUser", parameters={}
+2021-07-30 22:05:42.054 DEBUG 13388 --- [http-nio-8080-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.iktpreobuka.elektronskidnevnik.controllers.UserController#createUser(UserDTO, Integer, BindingResult)
+2021-07-30 22:05:42.055 DEBUG 13388 --- [http-nio-8080-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.iktpreobuka.elektronskidnevnik.entities.dto.UserDTO@52f8b5c1]
+2021-07-30 22:05:42.062 DEBUG 13388 --- [http-nio-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.iktpreobuka.elektronskidnevnik.controllers.UserController#handleValidationExceptions(MethodArgumentNotValidException)
+2021-07-30 22:05:42.062 DEBUG 13388 --- [http-nio-8080-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-07-30 22:05:42.062 DEBUG 13388 --- [http-nio-8080-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Writing [{lastName=First name length must be between 2 and 30, name=Last name length must be between 2 and 30 (truncated)...]
+2021-07-30 22:05:42.065  WARN 13388 --- [http-nio-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<?> com.iktpreobuka.elektronskidnevnik.controllers.UserController.createUser(com.iktpreobuka.elektronskidnevnik.entities.dto.UserDTO,java.lang.Integer,org.springframework.validation.BindingResult) with 4 errors: [Field error in object 'userDTO' on field 'confirmPassword': rejected value [1234]; codes [Size.userDTO.confirmPassword,Size.confirmPassword,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userDTO.confirmPassword,confirmPassword]; arguments []; default message [confirmPassword],15,5]; default message [Password length must be between 5 and 15]] [Field error in object 'userDTO' on field 'username': rejected value [guci013]; codes [UniqueUsername.userDTO.username,UniqueUsername.username,UniqueUsername.java.lang.String,UniqueUsername]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userDTO.username,username]; arguments []; default message [username]]; default message [Username should be unique. 'guci013' is already taken]] [Field error in object 'userDTO' on field 'lastName': rejected value [r]; codes [Size.userDTO.lastName,Size.lastName,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userDTO.lastName,lastName]; arguments []; default message [lastName],30,2]; default message [First name length must be between 2 and 30]] [Field error in object 'userDTO' on field 'name': rejected value [P]; codes [Size.userDTO.name,Size.name,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userDTO.name,name]; arguments []; default message [name],30,2]; default message [Last name length must be between 2 and 30]] ]
+2021-07-30 22:05:42.066 DEBUG 13388 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+2021-07-30 22:05:59.598 DEBUG 13388 --- [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : POST "/addUser", parameters={}
+2021-07-30 22:05:59.599 DEBUG 13388 --- [http-nio-8080-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.iktpreobuka.elektronskidnevnik.controllers.UserController#createUser(UserDTO, Integer, BindingResult)
+2021-07-30 22:05:59.602 DEBUG 13388 --- [http-nio-8080-exec-6] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [com.iktpreobuka.elektronskidnevnik.entities.dto.UserDTO@de22a8a]
+2021-07-30 22:05:59.610 DEBUG 13388 --- [http-nio-8080-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Using @ExceptionHandler com.iktpreobuka.elektronskidnevnik.controllers.UserController#handleValidationExceptions(MethodArgumentNotValidException)
+2021-07-30 22:05:59.611 DEBUG 13388 --- [http-nio-8080-exec-6] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-07-30 22:05:59.611 DEBUG 13388 --- [http-nio-8080-exec-6] m.m.a.RequestResponseBodyMethodProcessor : Writing [{lastName=First name length must be between 2 and 30, password=Password length must be between 5 and (truncated)...]
+2021-07-30 22:05:59.613  WARN 13388 --- [http-nio-8080-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<?> com.iktpreobuka.elektronskidnevnik.controllers.UserController.createUser(com.iktpreobuka.elektronskidnevnik.entities.dto.UserDTO,java.lang.Integer,org.springframework.validation.BindingResult) with 5 errors: [Field error in object 'userDTO' on field 'name': rejected value [P]; codes [Size.userDTO.name,Size.name,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userDTO.name,name]; arguments []; default message [name],30,2]; default message [Last name length must be between 2 and 30]] [Field error in object 'userDTO' on field 'lastName': rejected value [r]; codes [Size.userDTO.lastName,Size.lastName,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userDTO.lastName,lastName]; arguments []; default message [lastName],30,2]; default message [First name length must be between 2 and 30]] [Field error in object 'userDTO' on field 'password': rejected value [1234]; codes [Size.userDTO.password,Size.password,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userDTO.password,password]; arguments []; default message [password],15,5]; default message [Password length must be between 5 and 15]] [Field error in object 'userDTO' on field 'confirmPassword': rejected value [1234]; codes [Size.userDTO.confirmPassword,Size.confirmPassword,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userDTO.confirmPassword,confirmPassword]; arguments []; default message [confirmPassword],15,5]; default message [Password length must be between 5 and 15]] [Field error in object 'userDTO' on field 'username': rejected value [guci013]; codes [UniqueUsername.userDTO.username,UniqueUsername.username,UniqueUsername.java.lang.String,UniqueUsername]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [userDTO.username,username]; arguments []; default message [username]]; default message [Username should be unique. 'guci013' is already taken]] ]
+2021-07-30 22:05:59.614 DEBUG 13388 --- [http-nio-8080-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+2021-07-30 23:03:30.872  INFO 13388 --- [RMI TCP Connection(69)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-07-30 23:03:30.915  INFO 13388 --- [RMI TCP Connection(69)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-07-30 23:03:30.919  INFO 13388 --- [RMI TCP Connection(69)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-07-30 23:03:30.924  INFO 13388 --- [RMI TCP Connection(69)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-07-30 23:03:41.587  INFO 1664 --- [restartedMain] c.i.e.ElektronskiDnevnikApplication      : Starting ElektronskiDnevnikApplication using Java 15.0.2 on DESKTOP-1DG5QMU with PID 1664 (C:\Users\HP\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\elektronski_dnevnik\target\classes started by HP in C:\Users\HP\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\elektronski_dnevnik)
+2021-07-30 23:03:41.595  INFO 1664 --- [restartedMain] c.i.e.ElektronskiDnevnikApplication      : No active profile set, falling back to default profiles: default
+2021-07-30 23:03:41.707  INFO 1664 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-07-30 23:03:41.708  INFO 1664 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-07-30 23:03:43.684  INFO 1664 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-07-30 23:03:43.848  INFO 1664 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 149 ms. Found 9 JPA repository interfaces.
+2021-07-30 23:03:44.572  INFO 1664 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@7783c6f0' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-07-30 23:03:44.585  INFO 1664 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-07-30 23:03:48.137  INFO 1664 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-07-30 23:03:48.160  INFO 1664 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-07-30 23:03:48.161  INFO 1664 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
+2021-07-30 23:03:48.391  INFO 1664 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-07-30 23:03:48.392  INFO 1664 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6683 ms
+2021-07-30 23:03:49.636  INFO 1664 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-07-30 23:03:50.607  INFO 1664 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-07-30 23:03:52.856  INFO 1664 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-07-30 23:03:52.979  WARN 1664 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-07-30 23:03:54.274  INFO 1664 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 95636c5d-da92-44fb-ab2a-a2d05eabe4ae
+
+2021-07-30 23:03:54.448  INFO 1664 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@72fd6a83, org.springframework.security.web.context.SecurityContextPersistenceFilter@5845ff19, org.springframework.security.web.header.HeaderWriterFilter@39bef1f2, org.springframework.security.web.authentication.logout.LogoutFilter@dfcda0b, com.iktpreobuka.elektronskidnevnik.config.JWTAuthorizationFilter@4c5857f9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1af846c0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2744dffc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1fb19ee7, org.springframework.security.web.session.SessionManagementFilter@44e9557d, org.springframework.security.web.access.ExceptionTranslationFilter@4f1c20b7, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5407c06c]
+2021-07-30 23:03:54.681 DEBUG 1664 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2021-07-30 23:03:58.761 DEBUG 1664 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 45 mappings in 'requestMappingHandlerMapping'
+2021-07-30 23:03:58.853 DEBUG 1664 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2021-07-30 23:03:58.897 DEBUG 1664 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2021-07-30 23:03:59.272  INFO 1664 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-07-30 23:03:59.344  INFO 1664 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-07-30 23:03:59.369  INFO 1664 --- [restartedMain] c.i.e.ElektronskiDnevnikApplication      : Started ElektronskiDnevnikApplication in 18.735 seconds (JVM running for 20.903)
+2021-07-30 23:09:13.816  INFO 1664 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-07-30 23:09:13.817  INFO 1664 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-07-30 23:09:13.818 DEBUG 1664 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2021-07-30 23:09:13.818 DEBUG 1664 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2021-07-30 23:09:13.818 DEBUG 1664 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2021-07-30 23:09:13.819 DEBUG 1664 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@4ba5107f
+2021-07-30 23:09:13.820 DEBUG 1664 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@be1fe4
+2021-07-30 23:09:13.820 DEBUG 1664 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2021-07-30 23:09:13.820  INFO 1664 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2021-07-30 23:09:13.934 DEBUG 1664 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : POST "/login?username=natalic&pwd=1234jj", parameters={masked}
+2021-07-30 23:09:13.944 DEBUG 1664 --- [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.iktpreobuka.elektronskidnevnik.controllers.UserController#login(String, String)
+2021-07-30 23:09:16.791  INFO 1664 --- [http-nio-8080-exec-1] c.i.e.controllers.UserController         : token created
+2021-07-30 23:09:16.792  INFO 1664 --- [http-nio-8080-exec-1] c.i.e.controllers.UserController         : User logged in
+2021-07-30 23:09:16.949 DEBUG 1664 --- [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-07-30 23:09:16.951 DEBUG 1664 --- [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.iktpreobuka.elektronskidnevnik.entities.dto.UserDTO@26144ec0]
+2021-07-30 23:09:17.003 DEBUG 1664 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2021-07-30 23:11:02.260 ERROR 1664 --- [http-nio-8080-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+
+org.springframework.security.web.firewall.RequestRejectedException: The request was rejected because the URL contained a potentially malicious String "//"
+	at org.springframework.security.web.firewall.StrictHttpFirewall.rejectedBlocklistedUrls(StrictHttpFirewall.java:456) ~[spring-security-web-5.5.1.jar:5.5.1]
+	at org.springframework.security.web.firewall.StrictHttpFirewall.getFirewalledRequest(StrictHttpFirewall.java:429) ~[spring-security-web-5.5.1.jar:5.5.1]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:196) ~[spring-security-web-5.5.1.jar:5.5.1]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183) ~[spring-security-web-5.5.1.jar:5.5.1]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358) ~[spring-web-5.3.8.jar:5.3.8]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271) ~[spring-web-5.3.8.jar:5.3.8]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:190) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:163) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.8.jar:5.3.8]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.8.jar:5.3.8]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:190) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:163) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.8.jar:5.3.8]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.8.jar:5.3.8]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:190) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:163) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.8.jar:5.3.8]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.8.jar:5.3.8]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:190) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:163) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:382) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1723) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.48.jar:9.0.48]
+	at java.base/java.lang.Thread.run(Thread.java:832) ~[na:na]
+
+2021-07-30 23:11:02.428  WARN 1664 --- [http-nio-8080-exec-4] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [127] milliseconds.
+2021-07-30 23:11:27.447  INFO 1664 --- [RMI TCP Connection(11)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-07-30 23:11:27.585  INFO 1664 --- [RMI TCP Connection(11)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-07-30 23:11:27.590  INFO 1664 --- [RMI TCP Connection(11)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-07-30 23:11:27.621  INFO 1664 --- [RMI TCP Connection(11)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-07-30 23:11:44.036  INFO 496 --- [restartedMain] c.i.e.ElektronskiDnevnikApplication      : Starting ElektronskiDnevnikApplication using Java 15.0.2 on DESKTOP-1DG5QMU with PID 496 (C:\Users\HP\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\elektronski_dnevnik\target\classes started by HP in C:\Users\HP\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\elektronski_dnevnik)
+2021-07-30 23:11:44.043  INFO 496 --- [restartedMain] c.i.e.ElektronskiDnevnikApplication      : No active profile set, falling back to default profiles: default
+2021-07-30 23:11:44.162  INFO 496 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-07-30 23:11:44.163  INFO 496 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-07-30 23:11:46.151  INFO 496 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-07-30 23:11:46.352  INFO 496 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 184 ms. Found 9 JPA repository interfaces.
+2021-07-30 23:11:47.010  INFO 496 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@37ea6467' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-07-30 23:11:47.021  INFO 496 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-07-30 23:11:47.605  INFO 496 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-07-30 23:11:47.626  INFO 496 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-07-30 23:11:47.627  INFO 496 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
+2021-07-30 23:11:47.822  INFO 496 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-07-30 23:11:47.823  INFO 496 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3659 ms
+2021-07-30 23:11:48.682  INFO 496 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-07-30 23:11:49.391  INFO 496 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-07-30 23:11:51.738  INFO 496 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-07-30 23:11:51.852  WARN 496 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-07-30 23:11:53.516  INFO 496 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: c7811e4f-3676-4632-b57a-f59339d8ce7f
+
+2021-07-30 23:11:53.681  INFO 496 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@68308111, org.springframework.security.web.context.SecurityContextPersistenceFilter@39c83f36, org.springframework.security.web.header.HeaderWriterFilter@8585362, org.springframework.security.web.authentication.logout.LogoutFilter@a9b9a96, com.iktpreobuka.elektronskidnevnik.config.JWTAuthorizationFilter@69c1c6e7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@d38c170, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3891d62f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@19f8087b, org.springframework.security.web.session.SessionManagementFilter@fbd2fef, org.springframework.security.web.access.ExceptionTranslationFilter@8f2be8d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2cebacbf]
+2021-07-30 23:11:53.928 DEBUG 496 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2021-07-30 23:11:54.078 DEBUG 496 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 45 mappings in 'requestMappingHandlerMapping'
+2021-07-30 23:11:54.154 DEBUG 496 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2021-07-30 23:11:54.187 DEBUG 496 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2021-07-30 23:11:54.502  INFO 496 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-07-30 23:11:54.615  INFO 496 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-07-30 23:11:54.631  INFO 496 --- [restartedMain] c.i.e.ElektronskiDnevnikApplication      : Started ElektronskiDnevnikApplication in 11.287 seconds (JVM running for 18.404)
+2021-07-30 23:12:05.821  INFO 496 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-07-30 23:12:05.822  INFO 496 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-07-30 23:12:05.822 DEBUG 496 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2021-07-30 23:12:05.822 DEBUG 496 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2021-07-30 23:12:05.823 DEBUG 496 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2021-07-30 23:12:05.825 DEBUG 496 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@76845d91
+2021-07-30 23:12:05.826 DEBUG 496 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@20913852
+2021-07-30 23:12:05.827 DEBUG 496 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2021-07-30 23:12:05.828  INFO 496 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2021-07-30 23:12:06.101  WARN 496 --- [http-nio-8080-exec-2] o.a.c.util.SessionIdGeneratorBase        : Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [104] milliseconds.
+2021-07-30 23:12:06.127 DEBUG 496 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : GET "/grades/showStudentsGradesOneSubjectToGuardian?studentId=11&subjectId=22", parameters={masked}
+2021-07-30 23:12:06.133 DEBUG 496 --- [http-nio-8080-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.iktpreobuka.elektronskidnevnik.controllers.GradeController#showGradesToGuardian(Integer, Integer)
+2021-07-30 23:12:06.895 DEBUG 496 --- [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
+2021-07-30 23:12:06.897 DEBUG 496 --- [http-nio-8080-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.iktpreobuka.elektronskidnevnik.util.RestError@5c5724ce]
+2021-07-30 23:12:06.933 DEBUG 496 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 400 BAD_REQUEST
+2021-07-30 23:12:56.935  INFO 496 --- [RMI TCP Connection(3)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-07-30 23:12:56.983  INFO 496 --- [RMI TCP Connection(3)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-07-30 23:12:56.990  INFO 496 --- [RMI TCP Connection(3)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-07-30 23:12:57.002  INFO 496 --- [RMI TCP Connection(3)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-07-30 23:13:06.387  INFO 10928 --- [restartedMain] c.i.e.ElektronskiDnevnikApplication      : Starting ElektronskiDnevnikApplication using Java 15.0.2 on DESKTOP-1DG5QMU with PID 10928 (C:\Users\HP\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\elektronski_dnevnik\target\classes started by HP in C:\Users\HP\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\elektronski_dnevnik)
+2021-07-30 23:13:06.393  INFO 10928 --- [restartedMain] c.i.e.ElektronskiDnevnikApplication      : No active profile set, falling back to default profiles: default
+2021-07-30 23:13:06.579  INFO 10928 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-07-30 23:13:06.579  INFO 10928 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-07-30 23:13:08.826  INFO 10928 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-07-30 23:13:09.068  INFO 10928 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 220 ms. Found 9 JPA repository interfaces.
+2021-07-30 23:13:09.892  INFO 10928 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@21b584d3' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-07-30 23:13:09.905  INFO 10928 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-07-30 23:13:10.734  INFO 10928 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-07-30 23:13:10.755  INFO 10928 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-07-30 23:13:10.756  INFO 10928 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
+2021-07-30 23:13:11.468  INFO 10928 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-07-30 23:13:11.469  INFO 10928 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4889 ms
+2021-07-30 23:13:13.021  INFO 10928 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-07-30 23:13:13.605  INFO 10928 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-07-30 23:13:15.401  INFO 10928 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-07-30 23:13:15.501  WARN 10928 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-07-30 23:13:16.533  INFO 10928 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 9679f95b-c841-4183-a60d-0304c8450570
+
+2021-07-30 23:13:16.698  INFO 10928 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@48d314a5, org.springframework.security.web.context.SecurityContextPersistenceFilter@2fd2f583, org.springframework.security.web.header.HeaderWriterFilter@415fcc0b, org.springframework.security.web.authentication.logout.LogoutFilter@568ecaec, com.iktpreobuka.elektronskidnevnik.config.JWTAuthorizationFilter@205b438, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@184007c7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@80c46, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5a64b8ad, org.springframework.security.web.session.SessionManagementFilter@6a19c703, org.springframework.security.web.access.ExceptionTranslationFilter@468ee542, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6cf9186a]
+2021-07-30 23:13:16.915 DEBUG 10928 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2021-07-30 23:13:17.058 DEBUG 10928 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 45 mappings in 'requestMappingHandlerMapping'
+2021-07-30 23:13:17.206 DEBUG 10928 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2021-07-30 23:13:17.231 DEBUG 10928 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2021-07-30 23:13:17.535  INFO 10928 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-07-30 23:13:17.632  INFO 10928 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-07-30 23:13:17.651  INFO 10928 --- [restartedMain] c.i.e.ElektronskiDnevnikApplication      : Started ElektronskiDnevnikApplication in 12.535 seconds (JVM running for 15.118)
+2021-07-30 23:13:26.167  INFO 10928 --- [RMI TCP Connection(2)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2021-07-30 23:13:26.219  INFO 10928 --- [RMI TCP Connection(2)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-07-30 23:13:26.225  INFO 10928 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-07-30 23:13:26.232  INFO 10928 --- [RMI TCP Connection(2)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-07-30 23:13:45.244  INFO 7744 --- [restartedMain] c.i.e.ElektronskiDnevnikApplication      : Starting ElektronskiDnevnikApplication using Java 15.0.2 on DESKTOP-1DG5QMU with PID 7744 (C:\Users\HP\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\elektronski_dnevnik\target\classes started by HP in C:\Users\HP\Documents\workspace-spring-tool-suite-4-4.10.0.RELEASE\elektronski_dnevnik)
+2021-07-30 23:13:45.251  INFO 7744 --- [restartedMain] c.i.e.ElektronskiDnevnikApplication      : No active profile set, falling back to default profiles: default
+2021-07-30 23:13:45.419  INFO 7744 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-07-30 23:13:45.419  INFO 7744 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-07-30 23:13:47.297  INFO 7744 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-07-30 23:13:47.541  INFO 7744 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 225 ms. Found 9 JPA repository interfaces.
+2021-07-30 23:13:48.357  INFO 7744 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@7edef104' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-07-30 23:13:48.367  INFO 7744 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-07-30 23:13:49.064  INFO 7744 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-07-30 23:13:49.086  INFO 7744 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-07-30 23:13:49.087  INFO 7744 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
+2021-07-30 23:13:49.410  INFO 7744 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-07-30 23:13:49.411  INFO 7744 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3990 ms
+2021-07-30 23:13:50.417  INFO 7744 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-07-30 23:13:51.152  INFO 7744 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-07-30 23:13:53.359  INFO 7744 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-07-30 23:13:53.528  WARN 7744 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-07-30 23:13:54.715  INFO 7744 --- [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 35803bf1-4e70-4775-95d7-e50d6f97e70b
+
+2021-07-30 23:13:54.859  INFO 7744 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@44e8bdf4, org.springframework.security.web.context.SecurityContextPersistenceFilter@7e1fef98, org.springframework.security.web.header.HeaderWriterFilter@de4e9ef, org.springframework.security.web.authentication.logout.LogoutFilter@7ac2d89d, com.iktpreobuka.elektronskidnevnik.config.JWTAuthorizationFilter@70006bd4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7113b6da, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5e40f6c9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3f1b5778, org.springframework.security.web.session.SessionManagementFilter@3c4fc877, org.springframework.security.web.access.ExceptionTranslationFilter@53738976, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6b892bf6]
+2021-07-30 23:13:55.072 DEBUG 7744 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2021-07-30 23:13:55.218 DEBUG 7744 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : 45 mappings in 'requestMappingHandlerMapping'
+2021-07-30 23:13:55.289 DEBUG 7744 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2021-07-30 23:13:55.327 DEBUG 7744 --- [restartedMain] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2021-07-30 23:13:55.613  INFO 7744 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-07-30 23:13:55.688  INFO 7744 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-07-30 23:13:55.707  INFO 7744 --- [restartedMain] c.i.e.ElektronskiDnevnikApplication      : Started ElektronskiDnevnikApplication in 11.74 seconds (JVM running for 14.445)
+2021-07-30 23:16:59.016  INFO 7744 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-07-30 23:16:59.018  INFO 7744 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-07-30 23:16:59.019 DEBUG 7744 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2021-07-30 23:16:59.019 DEBUG 7744 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2021-07-30 23:16:59.020 DEBUG 7744 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2021-07-30 23:16:59.023 DEBUG 7744 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@57c3d091
+2021-07-30 23:16:59.025 DEBUG 7744 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@4e2c7c93
+2021-07-30 23:16:59.025 DEBUG 7744 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2021-07-30 23:16:59.025  INFO 7744 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2021-07-30 23:16:59.176 DEBUG 7744 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/grades/showStudentsGradesOneSubjectToGuardian?studentId=11&subjectId=22", parameters={masked}
+2021-07-30 23:16:59.182 DEBUG 7744 --- [http-nio-8080-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.iktpreobuka.elektronskidnevnik.controllers.GradeController#showGradesToGuardian(Integer, Integer)
+2021-07-30 23:16:59.687  INFO 7744 --- [http-nio-8080-exec-1] c.i.e.controllers.GradeController        : Guardian listed grades
+2021-07-30 23:16:59.709 DEBUG 7744 --- [http-nio-8080-exec-1] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json, application/json, application/*+json]
