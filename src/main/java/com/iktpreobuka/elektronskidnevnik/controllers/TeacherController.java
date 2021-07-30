@@ -2,7 +2,6 @@ package com.iktpreobuka.elektronskidnevnik.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -13,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,15 +25,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.iktpreobuka.elektronskidnevnik.entities.ClassesEntity;
-import com.iktpreobuka.elektronskidnevnik.entities.RoleEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.TeacherEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.dto.TeacherDTO;
 import com.iktpreobuka.elektronskidnevnik.repositories.ClassesRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.RoleRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.TeacherRepository;
-import com.iktpreobuka.elektronskidnevnik.repositories.UserRepository;
 import com.iktpreobuka.elektronskidnevnik.services.TeacherService;
-import com.iktpreobuka.elektronskidnevnik.util.Encryption;
 import com.iktpreobuka.elektronskidnevnik.util.RestError;
 import com.iktpreobuka.elektronskidnevnik.util.UserCustomValidator;
 import com.iktpreobuka.elektronskidnevnik.util.Validation;
@@ -45,9 +40,6 @@ import com.iktpreobuka.elektronskidnevnik.util.Validation;
 public class TeacherController {
 	@Autowired
 	private TeacherRepository teacherRepository;
-	
-	@Autowired
-	private UserRepository userRepository;
 	
 	@Autowired
 	TeacherService teacherService;
@@ -74,9 +66,6 @@ public class TeacherController {
 		binder.addValidators(usernameValidator);
 	}
 
-	private String createErrorMessage(BindingResult result) {
-		return result.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.joining("\n"));
-	}
 
 	private final Logger logger = (Logger) LoggerFactory.getLogger(this.getClass());
 
@@ -94,7 +83,7 @@ public class TeacherController {
 	public ResponseEntity<?> createTeacher(@Valid @RequestBody TeacherDTO newTeacher, @RequestParam Integer roleId,
 			BindingResult result) {
 		if (result.hasErrors())
-			return new ResponseEntity<>(createErrorMessage(result), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(Validation.createErrorMessage(result), HttpStatus.BAD_REQUEST);
 		TeacherEntity teacher= teacherService.newTeacher(newTeacher, roleId);
 		logger.info(teacher.toString(), "teacher added");
 		return new ResponseEntity<>(teacher, HttpStatus.CREATED);
@@ -122,15 +111,9 @@ public class TeacherController {
 	@PutMapping(value="/changeTeacher")
 	public ResponseEntity<?> changeTeacher (@RequestParam Integer teacherId,@Valid@RequestBody TeacherDTO changedTeacher, BindingResult result ){
 		if(result.hasErrors())
-			 return new ResponseEntity<>(createErrorMessage(result), HttpStatus.BAD_REQUEST);
+			 return new ResponseEntity<>(Validation.createErrorMessage(result), HttpStatus.BAD_REQUEST);
 		if(teacherRepository.existsById(teacherId)) {
-			TeacherEntity teacher= teacherRepository.findById(teacherId).get();
-			teacher.setName(Validation.setIfNotNull(teacher.getName(),changedTeacher.getName()));
-			teacher.setLastName(Validation.setIfNotNull(teacher.getLastName(),changedTeacher.getLastName()));
-			teacher.setUsername(Validation.setIfNotNull(teacher.getUsername(),changedTeacher.getUsername()));
-			teacher.setPassword(Validation.setIfNotNull(teacher.getPassword(),Encryption.getPassEncoded(changedTeacher.getPassword())));
-			teacher.setPassword(Validation.setIfNotNull(teacher.getPassword(),Encryption.getPassEncoded(changedTeacher.getConfirmPassword())));
-			teacherRepository.save(teacher);
+			TeacherEntity teacher= teacherService.changeTeacher(teacherId, changedTeacher);
 			logger.info("Teacher updated");
 			return new ResponseEntity<>(teacher,HttpStatus.OK);
 		}

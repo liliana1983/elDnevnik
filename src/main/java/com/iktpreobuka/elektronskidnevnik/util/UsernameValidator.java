@@ -6,7 +6,6 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.iktpreobuka.elektronskidnevnik.entities.UserEntity;
 import com.iktpreobuka.elektronskidnevnik.repositories.UserRepository;
 
 import lombok.AllArgsConstructor;

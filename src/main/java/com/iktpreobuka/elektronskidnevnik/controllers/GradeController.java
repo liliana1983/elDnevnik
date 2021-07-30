@@ -119,10 +119,10 @@ public class GradeController {
 	@Secured({ "ROLE_GUARDIAN", "ROLE_TEACHER", "ROLE_ADMIN" })
 	@GetMapping(value = "/showStudentsGradesOneSubject")
 	public ResponseEntity<?> showGrades(@RequestParam Integer studentId, @RequestParam Integer subjectId) {
-		//UserEntity user = userService.userLoggedIn();
-		//Integer userId = user.getId();		posebno metode za sve, plus headmaster takodje, jer ne moze svaki roditelj da vidi ocenu bilo kog deteta, vec samo roditelj
+		UserEntity user = userService.userLoggedIn();
+		Integer userId = user.getId();	//	posebno metode za sve, plus headmaster takodje, jer ne moze svaki roditelj da vidi ocenu bilo kog deteta, vec samo roditelj
 		if (studentRepository.existsById(studentId)) {								//cije je to dete, takodje i nastavnik koji predaje tom razredy moze da gleda ocene
-			if (subjectRepository.existsById(subjectId)) {								// i razredni staresina i naravno admin
+			if (subjectRepository.existsById(subjectId)) {		
 				SubjectEntity subject = subjectRepository.findById(subjectId).get();
 				StudentEntity student = studentRepository.findById(studentId).get();
 				if (subject.getClasses().contains(student.getEnrolledClass())) {

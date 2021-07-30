@@ -82,22 +82,31 @@ public class GuardianController {
 	@Secured("ROLE_ADMIN")
 	@PutMapping("/updateGuardian")
 	public ResponseEntity<?> updateGuardian(@RequestParam Integer guardianId,
-			@Valid @RequestBody GuardianDTO updateGuardian, BindingResult result) {
+			 @RequestBody GuardianEntity updateGuardian, BindingResult result) {
 		if (result.hasErrors())
 			return new ResponseEntity<>(Validation.createErrorMessage(result), HttpStatus.BAD_REQUEST);
 		if (guardianRepository.existsById(guardianId)) {
+			if(updateGuardian.getPassword() !=null) {
 			GuardianEntity guardian = guardianRepository.findById(guardianId).get();
 			guardian.setName(Validation.setIfNotNull(guardian.getName(), updateGuardian.getName()));
 			guardian.setLastName(Validation.setIfNotNull(guardian.getLastName(), updateGuardian.getLastName()));
 			guardian.setUsername(Validation.setIfNotNull(guardian.getUsername(), updateGuardian.getUsername()));
-			guardian.setPassword(Validation.setIfNotNull(Encryption.getPassEncoded(guardian.getPassword()),
+			guardian.setPassword(Validation.setIfNotNull(guardian.getPassword(),
 					Encryption.getPassEncoded(updateGuardian.getPassword())));
-			guardian.setPassword(Validation.setIfNotNull(Encryption.getPassEncoded(guardian.getPassword()),
-					Encryption.getPassEncoded(updateGuardian.getConfirmPassword())));
 			guardian.setEmail(Validation.setIfNotNull(guardian.getEmail(), updateGuardian.getEmail()));
 			guardianRepository.save(guardian);
 			logger.info("Guardian updated");
 			return new ResponseEntity<>(guardian, HttpStatus.OK);
+		}else {
+			GuardianEntity guardian = guardianRepository.findById(guardianId).get();
+		guardian.setName(Validation.setIfNotNull(guardian.getName(), updateGuardian.getName()));
+		guardian.setLastName(Validation.setIfNotNull(guardian.getLastName(), updateGuardian.getLastName()));
+		guardian.setUsername(Validation.setIfNotNull(guardian.getUsername(), updateGuardian.getUsername()));
+		guardian.setEmail(Validation.setIfNotNull(guardian.getEmail(), updateGuardian.getEmail()));
+		guardianRepository.save(guardian);
+		logger.info("Guardian updated");
+		return new ResponseEntity<>(guardian, HttpStatus.OK);}
+			
 		}
 		return new ResponseEntity<RestError>(new RestError(10, "Guardian with this Id doesnt exist!"),
 				HttpStatus.BAD_REQUEST);

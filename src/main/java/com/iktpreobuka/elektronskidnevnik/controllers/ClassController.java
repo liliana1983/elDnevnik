@@ -1,6 +1,7 @@
 package com.iktpreobuka.elektronskidnevnik.controllers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -16,6 +17,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -28,6 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.iktpreobuka.elektronskidnevnik.entities.ClassesEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.RoleEntity;
+import com.iktpreobuka.elektronskidnevnik.entities.StudentEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.TeacherEntity;
 import com.iktpreobuka.elektronskidnevnik.entities.dto.ClassDTO;
 import com.iktpreobuka.elektronskidnevnik.repositories.ClassesRepository;
@@ -156,6 +159,13 @@ public class ClassController {
 		}return new ResponseEntity<RestError>(new RestError(5,"Teacher with given id or class with given id doesnt exist"),HttpStatus.BAD_REQUEST);
 	}
 
+	@Secured({"ROLE_ADMIN","ROLE_TEACHER","ROLE_HEADMASTER"})
+	@GetMapping(value="/getAllOneClass/{classId}")
+	public ResponseEntity<?> getAllStudentsFromClass(@PathVariable Integer classId){
+		ClassesEntity classes = classesRepository.findById(classId).get();
+		List<StudentEntity> students=classes.getStudents();
+		return new ResponseEntity <>(students,HttpStatus.OK);
+	}
 	/*
 	 * @Secured("ROLE_ADMIN")
 	 * 

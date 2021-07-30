@@ -7,4 +7,6 @@ public interface GuardianService {
 
 	public GuardianEntity newGuardian(GuardianDTO newGuardian);
 
+	//GuardianEntity changeGuardian(Integer guardianId, GuardianEntity updateGuardian);
+
 }

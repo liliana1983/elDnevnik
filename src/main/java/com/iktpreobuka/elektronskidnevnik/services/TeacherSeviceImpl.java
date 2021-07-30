@@ -16,6 +16,7 @@ import com.iktpreobuka.elektronskidnevnik.repositories.RoleRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.TeacherRepository;
 import com.iktpreobuka.elektronskidnevnik.repositories.UserRepository;
 import com.iktpreobuka.elektronskidnevnik.util.Encryption;
+import com.iktpreobuka.elektronskidnevnik.util.Validation;
 
 @Service
 public class TeacherSeviceImpl implements TeacherService {
@@ -48,7 +49,8 @@ public class TeacherSeviceImpl implements TeacherService {
 		List<TeacherEntity> retVals = query.getResultList();
 		return retVals;
 	}
-@Override
+
+	@Override
 	public TeacherEntity newTeacher(TeacherDTO newTeacher, Integer roleId) {
 		TeacherEntity teacher = new TeacherEntity();
 		teacher.setName(newTeacher.getName());
@@ -61,4 +63,16 @@ public class TeacherSeviceImpl implements TeacherService {
 		return teacherRepository.save(teacher);
 	}
 
+@Override
+	public TeacherEntity changeTeacher(Integer teacherId, TeacherDTO changedTeacher) {
+		TeacherEntity teacher = teacherRepository.findById(teacherId).get();
+		teacher.setName(Validation.setIfNotNull(teacher.getName(), changedTeacher.getName()));
+		teacher.setLastName(Validation.setIfNotNull(teacher.getLastName(), changedTeacher.getLastName()));
+		teacher.setUsername(Validation.setIfNotNull(teacher.getUsername(), changedTeacher.getUsername()));
+		teacher.setPassword(Validation.setIfNotNull(teacher.getPassword(),
+				Encryption.getPassEncoded(changedTeacher.getPassword())));
+		teacher.setPassword(Validation.setIfNotNull(teacher.getPassword(),
+				Encryption.getPassEncoded(changedTeacher.getConfirmPassword())));
+		return teacherRepository.save(teacher);
+	}
 }

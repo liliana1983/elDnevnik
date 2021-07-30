@@ -31,4 +31,16 @@ public class GuardianServiceImpl implements GuardianService {
 				guardianRepository.save(guardian);
 				return guardian;
 	}
-}
+	/*@Override
+	public GuardianEntity changeGuardian(Integer guardianId, GuardianEntity updateGuardian) {
+		GuardianEntity guardian = guardianRepository.findById(guardianId).get();
+		guardian.setName(Validation.setIfNotNull(guardian.getName(), updateGuardian.getName()));
+		guardian.setLastName(Validation.setIfNotNull(guardian.getLastName(), updateGuardian.getLastName()));
+		guardian.setUsername(Validation.setIfNotNull(guardian.getUsername(), updateGuardian.getUsername()));
+		guardian.setPassword(Validation.setIfNotNull(Encryption.getPassEncoded(guardian.getPassword()),
+				Encryption.getPassEncoded(updateGuardian.getPassword())));
+		guardian.setEmail(Validation.setIfNotNull(guardian.getEmail(), updateGuardian.getEmail()));
+		 guardianRepository.save(guardian);
+		return guardian;*/
+	}
+

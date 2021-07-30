@@ -10,4 +10,6 @@ public interface TeacherService {
 public List<TeacherEntity> findAllTeachers();
 
 TeacherEntity newTeacher(TeacherDTO newTeacher, Integer roleId);
+
+TeacherEntity changeTeacher(Integer teacherId, TeacherDTO changedTeacher);
 }
